@@ -10,8 +10,8 @@ const navLinks = [
     name: 'About us',
     hasDropdown: true,
     dropdownItems: [
-      'Who We Are (Other Than Awesome)',
-      'What We Do (Besides Keeping Things Cool)',
+      'Who We Are?',
+      'What We Do?',
       'Why Choose Us?',
       'The Noted Vibe',
       'Wanna Be Part of This Vibe?',
