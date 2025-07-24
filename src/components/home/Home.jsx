@@ -20,7 +20,8 @@ const WorkSmartHomepage = () => {
     "Digital Excellence", "Smart Solutions", "Future Ready", "Growth Partner",
     "Success Stories", "Brand Evolution", "Market Leaders", "Vision 2025",
     "Strategic Minds", "Creative Force", "Tech Pioneers", "Business Growth", "Website Development", "Social Media Management", 
-    "Paid Ads", "Podcast", "Social Media Handling", "Graphic Designing", "Video Editing", "Training Programs", "Digital Marketing", "Website Management"
+    "Paid Ads", "Podcast", "Social Media Handling", "Graphic Designing", "Video Editing", "Training Programs", "Digital Marketing",
+    "Website Management"
   ];
 
   useEffect(() => {
