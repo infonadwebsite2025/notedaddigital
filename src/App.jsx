@@ -13,6 +13,8 @@ import WCU from "./components/about/WCU"
 import NotedVibe from "./components/about/NotedVibe"
 import JoinUs from "./components/about/JoinUs"
 import Achievement from './components/awards/Achievement';
+import Service from './components/services/Service';
+import OurClients from './components/OurClients/OurClients';
 
 function App() {
   return (
@@ -36,6 +38,9 @@ function App() {
         <Route path='/noted-vibe' element={<NotedVibe />} />
         <Route path='/join-us' element={<JoinUs />} />
         <Route path='/awards' element={<Achievement />} />
+        <Route path='/services' element={<Service />} />
+        <Route path='/our-clients' element={<OurClients />} />
+                
       </Routes>
     </Router>
   );

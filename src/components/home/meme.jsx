@@ -1,4 +1,3 @@
-// The exported code uses Tailwind CSS. Install Tailwind CSS in your dev environment to ensure all styles work.
 import React, { useState, useEffect } from "react";
 
 const Meme = () => {
@@ -87,14 +86,14 @@ const [selectedCard, setSelectedCard] = useState(null);
             our team's vibe is anything but corporate.
           </p>
         </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   {features.map((item, index) => (
     <div
       key={index}
       onClick={() => setSelectedCard(index)}
       onMouseEnter={() => setHoveredCard(index)}
       onMouseLeave={() => setHoveredCard(null)}
-      className={`relative bg-gradient-to-r from-slate-700 to-slate-800 p-6 rounded-2xl transform transition-all duration-500 hover:scale-[1.06] cursor-pointer shadow-xl hover:shadow-amber-500/20 border border-slate-600 hover:border-gradient-to-br from-purple-600 to-amber-400 group ${
+      className={`relative bg-gradient-to-r from-slate-700 to-slate-800 p-4 sm:p-6 rounded-2xl transform transition-all duration-500 hover:scale-[1.02] sm:hover:scale-[1.06] cursor-pointer shadow-xl hover:shadow-amber-500/20 border border-slate-600 hover:border-gradient-to-br from-purple-600 to-amber-400 group ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
       }`}
       style={{
@@ -102,12 +101,12 @@ const [selectedCard, setSelectedCard] = useState(null);
       }}
     >
       {/* Gradient Orb Icon */}
-      <div className="absolute -right-2 -top-2 w-10 h-10 bg-gradient-to-br from-amber-500 to-purple-600 rounded-full flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300 shadow-md">
-        <i className={`fas ${item.icon} text-white text-lg`}></i>
+      <div className="absolute -right-1 sm:-right-2 -top-1 sm:-top-2 w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-amber-500 to-purple-600 rounded-full flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300 shadow-md">
+        <i className={`fas ${item.icon} text-white text-sm sm:text-lg`}></i>
       </div>
 
       {/* Image */}
-      <div className="relative w-full h-40 mb-4 rounded-xl overflow-hidden">
+      <div className="relative w-full h-32 sm:h-40 mb-3 sm:mb-4 rounded-xl overflow-hidden">
         <img
           src={item.image}
           alt={item.title}
@@ -117,10 +116,10 @@ const [selectedCard, setSelectedCard] = useState(null);
       </div>
 
       {/* Text */}
-      <h3 className="text-lg text-white font-semibold line-clamp-2 group-hover:text-amber-400 transition-colors duration-300">
+      <h3 className="text-base sm:text-lg text-white font-semibold line-clamp-2 group-hover:text-amber-400 transition-colors duration-300 mb-2">
         {item.title}
       </h3>
-      <p className="text-sm text-gray-400 mt-2 line-clamp-2">
+      <p className="text-sm text-gray-400 line-clamp-3 sm:line-clamp-2 leading-relaxed">
         {item.content}
       </p>
 
@@ -131,13 +130,13 @@ const [selectedCard, setSelectedCard] = useState(null);
 
       {/* Fun Hover Sparkle */}
       {hoveredCard === index && (
-        <div className="absolute -right-2 -bottom-2 pointer-events-none">
-          <i className="fas fa-sparkles text-amber-400 animate-ping"></i>
+        <div className="absolute -right-1 sm:-right-2 -bottom-1 sm:-bottom-2 pointer-events-none">
+          <i className="fas fa-sparkles text-amber-400 animate-ping text-sm sm:text-base"></i>
         </div>
       )}
 
       {/* Gradient Bottom Bar */}
-      <div className="absolute bottom-2 left-4 right-4 h-1 bg-gradient-to-r from-amber-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full"></div>
+      <div className="absolute bottom-2 left-3 sm:left-4 right-3 sm:right-4 h-0.5 sm:h-1 bg-gradient-to-r from-amber-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full"></div>
 
       {/* Optional Shine Overlay */}
       <div className="absolute inset-0 rounded-xl pointer-events-none overflow-hidden">
@@ -146,60 +145,6 @@ const [selectedCard, setSelectedCard] = useState(null);
     </div>
   ))}
 </div>
-
-        {/* Modal */}
-        {/* {selectedCard !== null && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-slate-800 rounded-xl max-w-2xl w-full p-8 relative border-2 border-amber-500/30">
-              <button
-                onClick={() => setSelectedCard(null)}
-                className="absolute -right-3 -top-3 w-10 h-10 bg-gradient-to-br from-amber-500 to-purple-600 rounded-full flex items-center justify-center hover:rotate-90 transition-transform duration-300 cursor-pointer"
-              >
-                <i className="fas fa-times text-white"></i>
-              </button>
-              <div className="mb-6">
-                <div className="mb-6">
-                  <img
-                    src={features[selectedCard].image}
-                    alt={features[selectedCard].title}
-                    className="w-full h-64 object-cover rounded-lg mb-4 transform hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="flex items-center gap-4 mb-4">
-                  <i
-                    className={`fas ${features[selectedCard].icon} text-amber-400 text-2xl`}
-                  ></i>
-                  <h2 className="text-3xl font-bold text-white">
-                    {features[selectedCard].title}
-                  </h2>
-                </div>
-                <p className="text-gray-300 text-lg mb-6">
-                  {features[selectedCard].content}
-                </p>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-amber-400 mb-3">
-                  Success Stories
-                </h3>
-                {features[selectedCard].stories.map((story, index) => (
-                  <div key={index} className="bg-slate-700/50 p-4 rounded-lg">
-                    <p className="text-gray-300">✨ {story}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8 flex gap-4">
-                <button className="!rounded-button whitespace-nowrap bg-gradient-to-r from-amber-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity cursor-pointer flex items-center gap-2">
-                  <i className="fas fa-plus"></i>
-                  Share a Story
-                </button>
-                <button className="!rounded-button whitespace-nowrap border-2 border-amber-500/30 text-white px-6 py-3 rounded-lg hover:bg-amber-500/10 transition-colors cursor-pointer flex items-center gap-2">
-                  <i className="fas fa-images"></i>
-                  View Collection
-                </button>
-              </div>
-            </div>
-          </div>
-        )} */}
       </div>
       <style jsx>{`
 @keyframes gradient {
@@ -227,6 +172,10 @@ animation: shake 0.5s ease-in-out;
 }
 .hover-bounce:hover {
 animation: bounce-mini 0.5s ease infinite;
+}
+@keyframes shine {
+0% { left: -100%; }
+100% { left: 100%; }
 }
 `}</style>
     </div>

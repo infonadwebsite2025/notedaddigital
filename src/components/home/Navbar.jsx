@@ -26,7 +26,7 @@ const navLinks = [
   
   { name: 'Services', hasDropdown: false, path: '/services' },
   { name: 'Awards', hasDropdown: false, path: '/awards' },
-  { name: 'Career', hasDropdown: false, path: '/career' },
+  { name: 'Clients', hasDropdown: false, path: '/our-clients' },
   { name: 'Courses', hasDropdown: false, path: '/courses' },
   { name: 'Contact us', hasDropdown: false, path: '/contact' },
 ];
