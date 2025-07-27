@@ -19,6 +19,7 @@ import OurClients from './components/OurClients/OurClients';
 import DarkModeToggle from './components/ui/DarkModeToggle'; 
 
 function App() {
+  // canvas confetti animation
   useEffect(() => {
     // Fire fullscreen confetti animation every time the app loads
     confetti({
