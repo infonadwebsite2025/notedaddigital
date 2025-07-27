@@ -50,7 +50,6 @@ function App() {
   }, []);
 
   return (
-        <div className="bg-white text-black dark:bg-black dark:text-white min-h-screen transition-colors duration-300">
 
     <Router>
                 {/* <DarkModeToggle /> */}
@@ -74,7 +73,6 @@ function App() {
         <Route path="/our-clients" element={<OurClients />} />
       </Routes>
     </Router>
-    </div>
   );
 }
 
