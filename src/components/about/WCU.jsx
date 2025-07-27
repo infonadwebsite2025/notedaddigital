@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Music, Headphones, Repeat, Heart, Star, Zap, Coffee } from 'lucide-react';
 import Navbar from '../home/Navbar';
+import Footer from '../footer/Footer';
 
 const WhyChooseUsSection = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -151,6 +152,7 @@ const WhyChooseUsSection = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-amber-500 via-purple-500 to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
           </button>
         </div>
+      {/* <Footer/> */}
       </div>
     </div>
   );

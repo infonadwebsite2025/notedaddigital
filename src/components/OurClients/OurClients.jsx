@@ -6,6 +6,8 @@ import TestimonialsGrid from './TestimonialsGrid';
 import CTASection from './CTASection';
 import ParticleBackground from './ParticleBackground';
 import Navbar from '../home/Navbar';
+import Footer from '../footer/Footer';
+
 const OurClients = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [visibleCards, setVisibleCards] = useState([]);
@@ -118,6 +120,7 @@ const OurClients = () => {
         setIsAutoPlaying={setIsAutoPlaying}
       />
       <CTASection />
+      
       </div>
       <style jsx>{`
         @keyframes slideInUp {
@@ -160,6 +163,7 @@ const OurClients = () => {
           animation: gradient-x 3s ease infinite;
         }
       `}</style>
+      <Footer/>
     </div>
   );
 };

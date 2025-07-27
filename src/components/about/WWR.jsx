@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Zap, Lightbulb, Coffee, Rocket, Star, ArrowRight, Heart, Code, Palette } from 'lucide-react';
 import Navbar from '../home/Navbar';
+import Footer from '../footer/Footer';
 
 const WhoWeAre = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -208,6 +209,7 @@ const WhoWeAre = () => {
           box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
         }
       `}</style>
+      <Footer />
     </div>
   );
 };

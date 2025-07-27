@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Check, Sparkles, TrendingUp, Heart, Users } from 'lucide-react';
 import Navbar from '../home/Navbar';
+import Footer from '../footer/Footer';
+
 
 const NotedVibeComponent = () => {
   const [visibleItems, setVisibleItems] = useState([]);
@@ -276,6 +278,7 @@ const NotedVibeComponent = () => {
         </button>
       </div>
       </div>
+      <Footer/>
     </div>
   );
 };

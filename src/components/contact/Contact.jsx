@@ -1,49 +1,165 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Navbar from '../home/Navbar';
+
+const ImageCarousel = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMoving, setIsMoving] = useState(false);
+
+  // Sample images data
+  const images = [
+    {
+      id: 1,
+      src: "https://picsum.photos/223/300?random=1",
+      title: "Mountain Vista",
+      description: "Breathtaking mountain landscape"
+    },
+    {
+      id: 2,
+      src: "https://picsum.photos/223/300?random=2",
+      title: "Ocean Waves",
+      description: "Serene coastal beauty"
+    },
+    {
+      id: 3,
+      src: "https://picsum.photos/223/300?random=3",
+      title: "Forest Path",
+      description: "Mysterious woodland trail"
+    },
+    {
+      id: 4,
+      src: "https://picsum.photos/223/300?random=4",
+      title: "Desert Sunset",
+      description: "Golden hour in the desert"
+    },
+    {
+      id: 5,
+      src: "https://picsum.photos/223/300?random=5",
+      title: "City Lights",
+      description: "Urban nighttime panorama"
+    }
+  ];
+
+  // Duplicate images for seamless loop
+  const duplicatedImages = [...images, ...images];
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      // Start movement
+      setIsMoving(true);
+      
+      // After movement completes (0.8s), update index and stop movement
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+        setIsMoving(false);
+      }, 800);
+      
+    }, 1800); // Move every 1.8s (1s pause + 0.8s movement)
+
+    return () => clearInterval(interval);
+  }, [isPaused, images.length]);
+
+  const moveToNext = () => {
+    if (isMoving) return;
+    setIsMoving(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+      setIsMoving(false);
+    }, 800);
+  };
+
+  const moveToPrev = () => {
+    if (isMoving) return;
+    setIsMoving(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+      setIsMoving(false);
+    }, 800);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center">
+      
+      <Navbar />
+      <div className="relative w-full max-w-6xl h-80 overflow-hidden rounded-3xl shadow-2xl bg-white/10 backdrop-blur-lg border border-white/20 ">
+        {/* Carousel Track */}
+        <div 
+          className="flex h-full transition-transform duration-700 ease-in-out"
+          style={{
+            width: 'calc(200% + 40px)',
+            transform: `translateX(-${currentIndex * (223 + 8)}px)` // 223px width + 8px margin
+          }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {duplicatedImages.map((image, index) => (
+            <div
+              key={`${image.id}-${index}`}
+              className="flex-shrink-0 h-full mr-2 rounded-2xl overflow-hidden relative group transition-transform duration-300 hover:scale-105 hover:z-10"
+              style={{ width: '223px', height: '300px' }}
+            >
+              <img
+                src={image.src}
+                alt={image.title}
+                className="w-full h-full object-cover transition-all duration-300 group-hover:brightness-110"
+                style={{ width: '223px', height: '300px' }}
+              />
+              
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-lg font-semibold mb-1">{image.title}</h3>
+                  <p className="text-sm opacity-90">{image.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Control Buttons */}
+        <button
+          onClick={moveToPrev}
+          disabled={isMoving}
+          className="absolute left-5 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-2xl hover:bg-white/30 hover:scale-110 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          ‹
+        </button>
+        
+        <button
+          onClick={moveToNext}
+          disabled={isMoving}
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-2xl hover:bg-white/30 hover:scale-110 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          ›
+        </button>
+      </div>
+
+
+
+      {/* Remove CSS Animation */}
+      <style jsx>{`
+        /* No keyframes needed - using transform transitions */
+      `}</style>
+    </div>
+  );
+};
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
-
-  const baseImages = [
-    'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
-    'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
-    'https://images.unsplash.com/photo-1493612276216-ee3925520721',
-    'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-    'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70',
-    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308',
-  ];
-
-  const images = [...baseImages, ...baseImages]; // Duplicate for seamless scroll
-  const [current, setCurrent] = useState(0);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => {
-        if (prev >= baseImages.length) {
-          containerRef.current.style.transition = 'none';
-          setTimeout(() => {
-            containerRef.current.style.transition = 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)';
-            setCurrent(1);
-          }, 30);
-          return 0;
-        }
-        return prev + 1;
-      });
-    }, 1500); // Faster carousel speed
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   return (
-    <div className="font-sans text-gray-700 min-h-screen">
+    <div className="font-sans text-gray-700 min-h-screen mt-15">
       {/* Hero Section */}
       <section
         className="relative h-[320px] flex items-center justify-center bg-center bg-cover overflow-hidden"
-        style={{ backgroundImage: `url('${images[0]}')` }}
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d')` }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-gray-700/80 via-gray-700/60 to-purple-600/40 z-0" />
         <div className="relative z-10 px-12 py-10 rounded-2xl backdrop-blur-sm bg-white/10 shadow-2xl text-center max-w-3xl mx-4 hero-float">
@@ -52,7 +168,7 @@ const Contact = () => {
           </h1>
           <div className="h-1 w-24 bg-gradient-to-r from-amber-500 to-purple-600 mx-auto my-4 rounded-full animate-pulse"></div>
           <p className="text-white/90 text-lg mt-6 font-medium drop-shadow-lg">
-            <a href="/" className="hover:text-amber-400 transition-colors duration-300 text-white/80">Home</a> 
+            <Link to="/" className="hover:text-amber-400 transition-colors duration-300 text-white/80">Home</Link> 
             <span className="mx-2 text-amber-400">•</span> 
             Contact Us
           </p>
@@ -220,43 +336,29 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Enhanced Fast Carousel */}
-      <section className="my-16 max-w-7xl mx-auto overflow-hidden rounded-2xl">
-        <div
-          ref={containerRef}
-          className="flex gap-3 px-3"
-          style={{
-            transform: `translateX(-${current * 227}px)`,
-            transition: 'transform 0.3s ease-in-out',
-          }}
-        >
-          {images.map((src, idx) => (
-            <div key={idx} className="relative group cursor-pointer">
-              <img
-                src={src}
-                alt={`Slide ${idx}`}
-                className="w-[224px] h-[320px] flex-shrink-0 rounded-xl object-cover transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-700/60 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-          ))}
-        </div>
+      {/* Enhanced Image Carousel */}
+      <section className="mt-0 mb-20">
+        <ImageCarousel />
       </section>
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/9781043441"
-        className="fixed bottom-8 right-8 z-50 whatsapp-btn"
+        href="https://wa.me/+917009704696"
+        className="fixed bottom-8 right-8 z-50 whatsapp-btn group"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div className="bg-green-500 p-4 rounded-full shadow-2xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-110 group">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
             alt="WhatsApp"
-            className="w-8 h-8 transition-transform duration-300 group-hover:rotate-12"
+            className="w-15 h-15 transition-transform duration-300 group-hover:-rotate-12"
           />
-        </div>
+          {/* Tooltip */}
+          <div className="absolute bottom-full mb-3 right-0 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+            Tap to chat
+            {/* Arrow */}
+            <div className="absolute top-full right-4 w-0 h-0 border-t-8 border-t-gray-800 border-l-4 border-l-transparent border-r-4 border-r-transparent"></div>
+          </div>
       </a>
 
       {/* Enhanced Footer */}
@@ -297,13 +399,26 @@ const Contact = () => {
               <span className="text-xl">🔗</span> Links
             </h3>
             <ul className="space-y-3 text-sm text-gray-300">
-              {['Home', 'About us', 'Services', 'Contact us'].map((link, index) => (
-                <li key={index}>
-                  <a href="#" className="hover:text-amber-400 transition-colors duration-300 hover:translate-x-1 inline-block">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="hover:text-amber-400 transition-colors duration-300 hover:translate-x-1 inline-block">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/who-we-are" className="hover:text-amber-400 transition-colors duration-300 hover:translate-x-1 inline-block">
+                  About us
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-amber-400 transition-colors duration-300 hover:translate-x-1 inline-block">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/Contact" className="hover:text-amber-400 transition-colors duration-300 hover:translate-x-1 inline-block">
+                  Contact us
+                </Link>
+              </li>
             </ul>
           </div>
           

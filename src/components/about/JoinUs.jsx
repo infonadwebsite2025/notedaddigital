@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Lightbulb, Heart, Users, ArrowRight, Star } from 'lucide-react';
 import Navbar from '../home/Navbar';
+import Footer from '../footer/Footer';
+
 
 const VibeComponent = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -209,6 +211,7 @@ const VibeComponent = () => {
         }
       `}</style>
     </div>
+    <Footer/>
     </div>
   );
 };
