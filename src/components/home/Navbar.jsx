@@ -11,7 +11,7 @@ const routeMap = {
 };
 
 const navLinks = [
-  { name : 'Home', hasDropdown: false, path: '/'},
+  { name: 'Home', hasDropdown: false, path: '/' },
   {
     name: 'About',
     hasDropdown: true,
@@ -23,7 +23,7 @@ const navLinks = [
       'Wanna Be Part of This Vibe?',
     ],
   },
-  
+
   { name: 'Services', hasDropdown: false, path: '/services' },
   { name: 'Awards', hasDropdown: false, path: '/awards' },
   { name: 'Clients', hasDropdown: false, path: '/our-clients' },
@@ -50,23 +50,23 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`w-full fixed top-0 z-50 backdrop-blur-xl transition-all duration-700 ease-out ${
-      isScrolled
+    <nav className={`w-full fixed top-0 z-50 backdrop-blur-xl transition-all duration-700 ease-out ${isScrolled
         ? 'bg-white/90 shadow-2xl border-b border-purple-200/30'
         : 'bg-gradient-to-r from-white/70 via-purple-50/50 to-white/70'
-    }`}>
+      }`}>
       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-cyan-500/5 to-purple-500/5 animate-pulse"></div>
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
-        <div className="text-2xl font-bold flex items-center gap-2 group cursor-pointer">
+        <Link to="/" className="text-2xl font-bold flex items-center gap-2 group cursor-pointer">
           <div className="relative">
             <Sparkles className="text-purple-500 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
             <div className="absolute inset-0 bg-purple-500/20 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
           </div>
-          <span className="group-hover:text-purple-600 transition-colors duration-300">Noted-Ad</span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-cyan-500 to-purple-500 font-extrabold bg-size-200 animate-gradient group-hover:scale-105 transition-transform duration-300">
+          <span className="font-bold group-hover:text-purple-600 transition-colors duration-300">Noted-Ad</span>
+          <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-cyan-500 to-purple-500 bg-size-200 animate-gradient group-hover:scale-105 transition-transform duration-300">
             360
           </span>
-        </div>
+        </Link>
+
 
         {/* Navlinks mapping of about us  */}
         <ul className="hidden md:flex items-center space-x-8 text-[16px] font-medium text-gray-800 relative">
@@ -148,7 +148,7 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden">
-          <button 
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="p-2 rounded-lg hover:bg-purple-50 transition-all duration-300 group"
           >
@@ -182,9 +182,8 @@ const Navbar = () => {
                     </Link>
                   )}
                   {link.hasDropdown && (
-                    <ChevronDown className={`w-4 h-4 transition-all duration-300 group-hover:text-purple-500 ${
-                      openDropdownIndex === idx ? 'rotate-180' : ''
-                    }`} />
+                    <ChevronDown className={`w-4 h-4 transition-all duration-300 group-hover:text-purple-500 ${openDropdownIndex === idx ? 'rotate-180' : ''
+                      }`} />
                   )}
                 </div>
 
