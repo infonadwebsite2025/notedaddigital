@@ -16,7 +16,7 @@ import JoinUs from "./components/about/JoinUs";
 import Achievement from './components/awards/Achievement';
 import Service from './components/services/Service';
 import OurClients from './components/OurClients/OurClients';
-import DarkModeToggle from './components/ui/DarkModeToggle'; 
+// import DarkModeToggle from './components/ui/DarkModeToggle'; 
 
 function App() {
   // canvas confetti animation
@@ -53,7 +53,7 @@ function App() {
         <div className="bg-white text-black dark:bg-black dark:text-white min-h-screen transition-colors duration-300">
 
     <Router>
-                <DarkModeToggle />
+                {/* <DarkModeToggle /> */}
       <Routes>
         {/* <Route path='/card' element={<DraggableCard/>}/> */}
 

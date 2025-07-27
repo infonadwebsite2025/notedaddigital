@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Sparkles, ChevronDown, Zap, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import DarkModeToggle from '../ui/DarkModeToggle';
+// import DarkModeToggle from '../ui/DarkModeToggle';
 
 const routeMap = {
   'Who We Are?': '/who-we-are',
@@ -146,7 +146,7 @@ const Navbar = () => {
               <Phone className="w-5 h-5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
             </div>
           </button>
-                  <DarkModeToggle />
+                  {/* <DarkModeToggle /> */}
 
         </div>
 
