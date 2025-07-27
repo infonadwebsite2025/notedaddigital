@@ -160,7 +160,7 @@ const WorkSmartHomepage = () => {
 
   
   return (
-
+    
     <div className="max-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-800 overflow-x-hidden relative">
       {/* Animated Background Words */}
       <Navbar/>
