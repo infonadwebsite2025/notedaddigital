@@ -16,6 +16,7 @@ import JoinUs from "./components/about/JoinUs";
 import Achievement from './components/awards/Achievement';
 import Service from './components/services/Service';
 import OurClients from './components/OurClients/OurClients';
+import Courses from './components/courses/course';
 // import DarkModeToggle from './components/ui/DarkModeToggle'; 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
         <Route path="/awards" element={<Achievement />} />
         <Route path="/services" element={<Service />} />
         <Route path="/our-clients" element={<OurClients />} />
+        <Route path="/courses" element={<Courses />} />
       </Routes>
       
       {/* <Footer/> */}
