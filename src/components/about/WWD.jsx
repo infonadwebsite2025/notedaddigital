@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Palette, Code, PenTool, TrendingUp, Coffee, Trello } from 'lucide-react';
 import Navbar from '../home/Navbar';
-import Footer from '../footer/Footer';
+// import Footer from '../footer/Footer';
 
 
 const ServicesComponent = () => {
@@ -297,7 +297,7 @@ const ServicesComponent = () => {
                     <div className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-purple-500 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }}></div>
                 </div>
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </div>
     );
 };

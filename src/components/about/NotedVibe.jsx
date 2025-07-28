@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Check, Sparkles, TrendingUp, Heart, Users } from 'lucide-react';
 import Navbar from '../home/Navbar';
-import Footer from '../footer/Footer';
+// import Footer from '../footer/Footer';
 
 
 const NotedVibeComponent = () => {
@@ -278,7 +278,7 @@ const NotedVibeComponent = () => {
         </button>
       </div>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 };
