@@ -47,7 +47,7 @@ const WhyChooseUsSection = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-64 sm:h-64 bg-gradient-to-r from-gray-600/5 to-purple-500/5 rounded-full animate-spin" style={{animationDuration: '20s'}}></div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full mt-10">
+      <div className="relative z-10 max-w-6xl mx-auto w-full mt-15">
         {/* Main Header Section */}
         <div className="text-center mb-8 sm:mb-12 md:mb-16 transform hover:scale-105 transition-all duration-700">
           <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-gray-600/10 to-purple-500/10 backdrop-blur-sm border border-gray-600/20 hover:border-amber-500/40 transition-all duration-500">
