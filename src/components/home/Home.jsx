@@ -4,7 +4,7 @@ import Meme from '../home/meme';
 import Contact from '../contact/Contact';
 import FoodCul from '../home/FoodCul';
 import OurCul from '../home/OurCul';
-import Footer from '../footer/Footer';
+// import Footer from '../footer/Footer';
 
 const WorkSmartHomepage = () => {
   const [typedText, setTypedText] = useState('');
@@ -377,7 +377,7 @@ const WorkSmartHomepage = () => {
                       <FoodCul/>
                       <OurCul/>
                       <Contact/>
-                      <Footer/>                                         
+                      {/* <Footer/>                                          */}
 
       <style jsx>{`
         @keyframes floatWords {
