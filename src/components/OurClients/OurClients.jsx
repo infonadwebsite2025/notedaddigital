@@ -6,7 +6,7 @@ import TestimonialsGrid from './TestimonialsGrid';
 import CTASection from './CTASection';
 import ParticleBackground from './ParticleBackground';
 import Navbar from '../home/Navbar';
-// import Footer from '../footer/Footer';
+import Footer from '../footer/Footer';
 
 const OurClients = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -163,7 +163,7 @@ const OurClients = () => {
           animation: gradient-x 3s ease infinite;
         }
       `}</style>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 };

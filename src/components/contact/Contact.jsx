@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../home/Navbar';
+import Footer from '../footer/Footer';
 
 const ImageCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -453,6 +454,7 @@ const Contact = () => {
           90% { transform: translateY(-3px); }
         }
       `}</style>
+      <Footer/>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Music, Headphones, Repeat, Heart, Star, Zap, Coffee } from 'lucide-react';
 import Navbar from '../home/Navbar';
-// import Footer from '../footer/Footer';
+import Footer from '../footer/Footer';
 
 const WhyChooseUsSection = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -158,7 +158,7 @@ const WhyChooseUsSection = () => {
         </div>
       </div>
       </div>
-                  {/* <Footer/> */}
+                  <Footer/>
 
     </div>
   );
