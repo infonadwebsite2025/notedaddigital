@@ -17,6 +17,7 @@ import Achievement from './components/awards/Achievement';
 import Service from './components/services/Service';
 import OurClients from './components/OurClients/OurClients';
 import Courses from './components/courses/course';
+import { Toaster } from 'react-hot-toast';
 // import DarkModeToggle from './components/ui/DarkModeToggle'; 
 
 function App() {
@@ -24,13 +25,13 @@ function App() {
   useEffect(() => {
     // Fire fullscreen confetti animation every time the app loads
     confetti({
-      particleCount: 300,
+      particleCount: 200,
       spread: 180,
       origin: { y: 0.5 },
     });
 
     // Optional: burst effect loop
-    const duration = 2 * 2000;
+    const duration = 2 * 1000;
     const animationEnd = Date.now() + duration;
 
     const interval = setInterval(() => {
@@ -51,8 +52,11 @@ function App() {
   }, []);
 
   return (
+    
 
     <Router>
+          <Toaster position="top-center" reverseOrder={false} />
+
                 {/* <DarkModeToggle /> */}
       <Routes>
         {/* <Route path='/card' element={<DraggableCard/>}/> */}

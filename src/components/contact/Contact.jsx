@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+import boomer from 'react-hot-toast'; // toast
 import Navbar from '../home/Navbar';
 import Footer from '../footer/Footer';
+
+// Loading Spinner Component
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center">
+    <div className="relative">
+      <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+      <div className="absolute inset-0 w-6 h-6 border-3 border-transparent border-t-white/60 rounded-full animate-spin animation-delay-150"></div>
+    </div>
+  </div>
+);
 
 const ImageCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -51,13 +63,13 @@ const ImageCarousel = () => {
     const interval = setInterval(() => {
       // Start movement
       setIsMoving(true);
-      
+
       // After movement completes (0.8s), update index and stop movement
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
         setIsMoving(false);
       }, 800);
-      
+
     }, 1800); // Move every 1.8s (1s pause + 0.8s movement)
 
     return () => clearInterval(interval);
@@ -83,11 +95,9 @@ const ImageCarousel = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      
-      <Navbar />
       <div className="relative w-full max-w-6xl h-80 overflow-hidden rounded-3xl shadow-2xl bg-white/10 backdrop-blur-lg border border-white/20 ">
         {/* Carousel Track */}
-        <div 
+        <div
           className="flex h-full transition-transform duration-700 ease-in-out"
           style={{
             width: 'calc(200% + 40px)',
@@ -108,7 +118,7 @@ const ImageCarousel = () => {
                 className="w-full h-full object-cover transition-all duration-300 group-hover:brightness-110"
                 style={{ width: '223px', height: '300px' }}
               />
-              
+
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -128,7 +138,7 @@ const ImageCarousel = () => {
         >
           ‹
         </button>
-        
+
         <button
           onClick={moveToNext}
           disabled={isMoving}
@@ -137,26 +147,61 @@ const ImageCarousel = () => {
           ›
         </button>
       </div>
-
-
-
-      {/* Remove CSS Animation */}
-      <style jsx>{`
-        /* No keyframes needed - using transform transitions */
-      `}</style>
     </div>
   );
 };
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    mobile: '',
+    message: ''
+  });
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const serviceID = "service_nfcu5ve";
+    const templateID = "template_2j9779r";
+    const publicKey = "GPa7XOO7AtlpBLQZF";
+
+        const templateParams = {
+          title: formData.title || 'New Contact Form Submission',
+      name: formData.name,
+      email: formData.email,
+      mobile: formData.mobile,
+      message: formData.message
+    };
+
+    try {
+      const result = await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      console.log("Email sent successfully:", result.text);
+        boomer.success("🎉 Form submitted successfully! We'll get back to you soon.", {
+          duration: 4000, 
+        });
+      setFormData({ name: '', email: '', mobile: '', message: '' });
+    } catch (error) {
+      console.error("EmailJS error:", error);
+        boomer.error("😓 Oops! Something went wrong. Please try again or contact us directly.", {
+          duration: 4000,
+        });
+
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="font-sans text-gray-700 min-h-screen mt-15">
+      <Navbar />
       {/* Hero Section */}
       <section
         className="relative h-[320px] flex items-center justify-center bg-center bg-cover overflow-hidden"
@@ -169,8 +214,8 @@ const Contact = () => {
           </h1>
           <div className="h-1 w-24 bg-gradient-to-r from-amber-500 to-purple-600 mx-auto my-4 rounded-full animate-pulse"></div>
           <p className="text-white/90 text-lg mt-6 font-medium drop-shadow-lg">
-            <Link to="/" className="hover:text-amber-400 transition-colors duration-300 text-white/80">Home</Link> 
-            <span className="mx-2 text-amber-400">•</span> 
+            <span className="hover:text-amber-400 transition-colors duration-300 text-white/80 cursor-pointer">Home</span>
+            <span className="mx-2 text-amber-400">•</span>
             Contact Us
           </p>
         </div>
@@ -195,7 +240,7 @@ const Contact = () => {
 
             <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
               <p className="text-xl font-medium transform hover:translate-x-2 transition-transform duration-300">
-                Got a project? A <span className="text-amber-600 font-semibold hover:text-purple-600 transition-colors duration-300">wild idea</span>? 
+                Got a project? A <span className="text-amber-600 font-semibold hover:text-purple-600 transition-colors duration-300">wild idea</span>?
                 Or just want to say hi? <br />
                 We're all ears <span className="italic text-purple-600">(and screens)</span>.
               </p>
@@ -214,7 +259,7 @@ const Contact = () => {
                     <span className="text-2xl mr-2 float-emoji">📬</span> Get In Touch
                   </p>
                   <div className="space-y-2 text-gray-600">
-                    <p>Email: 
+                    <p>Email:
                       <a href="mailto:md@notedaddigital.com" className="ml-2 font-semibold hover:text-amber-600 transition-colors duration-300 hover:underline">
                         md@notedaddigital.com
                       </a> /
@@ -222,7 +267,7 @@ const Contact = () => {
                         ceo@notedaddigital.com
                       </a>
                     </p>
-                    <p>Call: 
+                    <p>Call:
                       <a href="tel:9781043441" className="ml-2 font-semibold hover:text-purple-600 transition-colors duration-300 hover:underline">
                         9781043441
                       </a> /
@@ -243,10 +288,10 @@ const Contact = () => {
                     2nd Floor, G Square Building, Maqsudan, Jalandhar, Punjab, 144008
                   </p>
                   <p className="italic text-sm text-purple-600 mb-4">(But we vibe globally 🌍)</p>
-                  <a 
-                    href="https://www.google.com/maps?q=G+Square+Building,+Maqsudan,+Jalandhar,+Punjab+144008" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <a
+                    href="https://www.google.com/maps?q=G+Square+Building,+Maqsudan,+Jalandhar,+Punjab+144008"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 border-2 border-gray-700 text-gray-700 font-semibold px-4 py-2 rounded-full hover:bg-gray-700 hover:text-white hover:scale-105 transition-all duration-300 hover:shadow-lg map-btn"
                   >
                     <span className="text-lg">📌</span> View on Map
@@ -278,60 +323,96 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Enhanced Form Section */}
+          {/* Enhanced Form Section - Now with working functionality */}
           <div className="lg:w-1/2 max-w-2xl mx-auto">
             <div className="form-container bg-white p-10 rounded-3xl shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-500 via-purple-600 to-gray-700"></div>
-              
+
               <h2 className="text-3xl font-bold text-gray-700 mb-8 text-center">
                 <span className="text-4xl mr-2 float-emoji">✨</span>
                 Let's Start Something Amazing
               </h2>
 
-              <div className="space-y-6">
-                {[
-                  { field: 'name', type: 'text', placeholder: 'Your Name', emoji: '👤' },
-                  { field: 'email', type: 'email', placeholder: 'Your Email', emoji: '✉️' },
-                  { field: 'mobile', type: 'tel', placeholder: 'Your Mobile Number', emoji: '📱' }
-                ].map((item, index) => (
-                  <div key={index} className="relative group">
+              <form onSubmit={handleSubmit}>
+                <div className="space-y-6">
+                  <div className="relative group">
                     <input
-                      type={item.type}
-                      name={item.field}
-                      placeholder={item.placeholder}
-                      className="input-field w-full p-5 pl-14 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-600 transition-all duration-300 hover:border-amber-500 hover:shadow-md text-gray-700 bg-gray-50 focus:bg-white"
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="input-field w-full p-5 pl-14 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-600 transition-all duration-300 hover:border-amber-500 hover:shadow-md text-gray-700 bg-gray-50 focus:bg-white disabled:opacity-60 disabled:cursor-not-allowed"
                       required
+                      disabled={isLoading}
                     />
-                    <span className="input-emoji absolute left-5 top-1/2 -translate-y-1/2 text-xl transition-all duration-500 group-hover:scale-125 group-focus-within:scale-125 group-focus-within:-translate-y-8 group-hover:-translate-y-8">
-                      {item.emoji}
-                    </span>
+                    <span className="input-emoji absolute left-5 top-1/2 -translate-y-1/2 text-xl">👤</span>
                   </div>
-                ))}
-                
-                <div className="relative group">
-                  <textarea
-                    name="message"
-                    placeholder="Tell us about your project (go wild with details!)"
-                    rows="6"
-                    className="input-field w-full p-5 pl-14 border-2 border-gray-200 rounded-2xl resize-none focus:outline-none focus:border-purple-600 transition-all duration-300 hover:border-amber-500 hover:shadow-md text-gray-700 bg-gray-50 focus:bg-white"
-                    required
-                  ></textarea>
-                  <span className="input-emoji absolute left-5 top-5 text-xl transition-all duration-500 group-hover:scale-125 group-focus-within:scale-125 group-focus-within:-translate-y-6 group-hover:-translate-y-6">
-                    💭
-                  </span>
+
+                  <div className="relative group">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="input-field w-full p-5 pl-14 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-600 transition-all duration-300 hover:border-amber-500 hover:shadow-md text-gray-700 bg-gray-50 focus:bg-white disabled:opacity-60 disabled:cursor-not-allowed"
+                      required
+                      disabled={isLoading}
+                    />
+                    <span className="input-emoji absolute left-5 top-1/2 -translate-y-1/2 text-xl">✉️</span>
+                  </div>
+
+                  <div className="relative group">
+                    <input
+                      type="tel"
+                      name="mobile"
+                      placeholder="Your Mobile Number"
+                      value={formData.mobile}
+                      onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                      className="input-field w-full p-5 pl-14 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-600 transition-all duration-300 hover:border-amber-500 hover:shadow-md text-gray-700 bg-gray-50 focus:bg-white disabled:opacity-60 disabled:cursor-not-allowed"
+                      required
+                      disabled={isLoading}
+                    />
+                    <span className="input-emoji absolute left-5 top-1/2 -translate-y-1/2 text-xl">📱</span>
+                  </div>
+
+                  <div className="relative group">
+                    <textarea
+                      name="message"
+                      placeholder="Tell us about your project (go wild with details!)"
+                      rows="6"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="input-field w-full p-5 pl-14 border-2 border-gray-200 rounded-2xl resize-none focus:outline-none focus:border-purple-600 transition-all duration-300 hover:border-amber-500 hover:shadow-md text-gray-700 bg-gray-50 focus:bg-white disabled:opacity-60 disabled:cursor-not-allowed"
+                      required
+                      disabled={isLoading}
+                    ></textarea>
+                    <span className="input-emoji absolute left-5 top-5 text-xl">💭</span>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="submit-btn w-full bg-gradient-to-r from-gray-700 via-amber-500 to-purple-600 text-white py-4 px-8 rounded-2xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 text-lg font-bold relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      {isLoading ? (
+                        <>
+                          <LoadingSpinner />
+                          <span className="ml-2">Sending Magic...</span>
+                        </>
+                      ) : (
+                        <>
+                          Let's Create Magic
+                          <span className="text-xl group-hover:animate-bounce">🚀</span>
+                        </>
+                      )}
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-gray-700 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </button>
                 </div>
-                
-                <button
-                  type="submit"
-                  className="submit-btn w-full bg-gradient-to-r from-gray-700 via-amber-500 to-purple-600 text-white py-4 px-8 rounded-2xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 text-lg font-bold relative overflow-hidden group"
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Let's Create Magic 
-                    <span className="text-xl group-hover:animate-bounce">🚀</span>
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-gray-700 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
-                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -349,17 +430,17 @@ const Contact = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-            alt="WhatsApp"
-            className="w-15 h-15 transition-transform duration-300 group-hover:-rotate-12"
-          />
-          {/* Tooltip */}
-          <div className="absolute bottom-full mb-3 right-0 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-            Tap to chat
-            {/* Arrow */}
-            <div className="absolute top-full right-4 w-0 h-0 border-t-8 border-t-gray-800 border-l-4 border-l-transparent border-r-4 border-r-transparent"></div>
-          </div>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp"
+          className="w-15 h-15 transition-transform duration-300 group-hover:-rotate-12"
+        />
+        {/* Tooltip */}
+        <div className="absolute bottom-full mb-3 right-0 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+          Tap to chat
+          {/* Arrow */}
+          <div className="absolute top-full right-4 w-0 h-0 border-t-8 border-t-gray-800 border-l-4 border-l-transparent border-r-4 border-r-transparent"></div>
+        </div>
       </a>
 
       {/* Enhanced CSS Animations */}
@@ -436,6 +517,10 @@ const Contact = () => {
           box-shadow: 0 8px 25px rgba(55, 65, 81, 0.3);
         }
         
+        .animation-delay-150 {
+          animation-delay: 150ms;
+        }
+        
         @keyframes fadeInUp {
           from { 
             opacity: 0; 
@@ -458,5 +543,6 @@ const Contact = () => {
     </div>
   );
 };
+
 
 export default Contact;
