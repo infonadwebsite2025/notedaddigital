@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 // import  DraggableCard from './pages/DraggableCardDemo';
@@ -22,16 +22,21 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   // canvas confetti animation
+const canvasRef = useRef(null);
+
   useEffect(() => {
-    // Fire fullscreen confetti animation every time the app loads
-    confetti({
+    const myConfetti = confetti.create(canvasRef.current, {
+      resize: true,
+      useWorker: true,
+    });
+
+    myConfetti({
       particleCount: 200,
       spread: 180,
       origin: { y: 0.5 },
     });
 
-    // Optional: burst effect loop
-    const duration = 2 * 1000;
+    const duration = 2000;
     const animationEnd = Date.now() + duration;
 
     const interval = setInterval(() => {
@@ -39,7 +44,7 @@ function App() {
         clearInterval(interval);
       }
 
-      confetti({
+      myConfetti({
         particleCount: 50,
         startVelocity: 30,
         spread: 360,
@@ -51,8 +56,23 @@ function App() {
     }, 250);
   }, []);
 
+
   return (
-    
+    <>
+      {/* Fixed confetti canvas */}
+      <canvas
+        ref={canvasRef}
+        id="confetti-canvas"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          zIndex: 9999,
+        }}
+      />
 
     <Router>
           <Toaster position="top-center" reverseOrder={false} />
@@ -81,6 +101,7 @@ function App() {
       
       {/* <Footer/> */}
     </Router>
+    </>
   );
 }
 

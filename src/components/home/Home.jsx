@@ -229,18 +229,24 @@ const WorkSmartHomepage = () => {
             <div className="w-32 h-2 bg-gradient-to-r from-amber-400 to-purple-500 mx-auto mt-4 rounded-full animate-pulse"></div>
           </div>
 
-          {/* Subtitle with typing effect */}
-          <div className="relative mb-12">
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 min-h-[4rem] transition-all duration-500 transform hover:scale-105 relative z-10">
-              {typedText}
-              <span className="animate-pulse text-amber-500 font-bold">|</span>
-            </p>
-            
-            {/* Subtitle glow effect */}
-            <div className="absolute inset-0 text-xl md:text-2xl lg:text-3xl text-gray-400 opacity-10 blur-lg animate-pulse -z-10">
-              {typedText}
-            </div>
-          </div>
+        <div className="relative mb-12 min-h-[4rem]">
+  {/* Static container with fixed height to prevent shifting */}
+  <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 min-h-[4rem] transition-transform duration-500 transform hover:scale-105 relative z-10">
+    <span className="inline-block w-full">
+      {typedText}
+      <span className="text-amber-500 font-bold">|</span>
+    </span>
+  </p>
+
+  {/* Subtitle glow effect */}
+  <div
+    className="absolute inset-0 text-xl md:text-2xl lg:text-3xl text-gray-400 opacity-10 blur-lg -z-10 pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    {typedText}
+  </div>
+</div>
+
           
           {/* Enhanced floating action buttons */}
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 mt-12">
