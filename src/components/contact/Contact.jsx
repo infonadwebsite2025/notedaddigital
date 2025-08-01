@@ -5,6 +5,57 @@ import boomer from 'react-hot-toast'; // toast
 import Navbar from '../home/Navbar';
 import Footer from '../footer/Footer';
 
+// Toast Component (Custom implementation to replace react-hot-toast dependency)
+const Toast = ({ message, type, isVisible, onClose }) => {
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, onClose]);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className={`fixed top-6 right-6 z-[100] transform transition-all duration-500 ease-out ${
+      isVisible ? 'translate-x-0 opacity-100 scale-100' : 'translate-x-full opacity-0 scale-95'
+    }`}>
+      <div className={`flex items-center gap-3 px-6 py-4 rounded-2xl shadow-2xl backdrop-blur-lg border-2 max-w-sm ${
+        type === 'success' 
+          ? 'bg-green-50/90 border-green-200 text-green-800' 
+          : 'bg-red-50/90 border-red-200 text-red-800'
+      }`}>
+        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
+          type === 'success' ? 'bg-green-500' : 'bg-red-500'
+        }`}>
+          {type === 'success' ? (
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          )}
+        </div>
+        <div className="flex-1">
+          <p className="font-semibold text-sm">{message}</p>
+        </div>
+        <button
+          onClick={onClose}
+          className="flex-shrink-0 ml-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 // Loading Spinner Component
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center">
@@ -154,6 +205,7 @@ const ImageCarousel = () => {
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -165,34 +217,65 @@ const Contact = () => {
     setIsVisible(true);
   }, []);
 
+  const showToast = (message, type = 'success') => {
+    setToast({ show: true, message, type });
+  };
+
+  const hideToast = () => {
+    setToast({ show: false, message: '', type: 'success' });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const serviceID = "service_nfcu5ve";
-    const templateID = "template_2j9779r";
-    const publicKey = "GPa7XOO7AtlpBLQZF";
-
-        const templateParams = {
-          title: formData.title || 'New Contact Form Submission',
-      name: formData.name,
-      email: formData.email,
-      mobile: formData.mobile,
-      message: formData.message
-    };
-
     try {
-      const result = await emailjs.send(serviceID, templateID, templateParams, publicKey);
-      console.log("Email sent successfully:", result.text);
-        boomer.success("🎉 Form submitted successfully! We'll get back to you soon.", {
-          duration: 4000, 
-        });
+      // First, send data to Google Sheets
+      const googleSheetUrl = "https://script.google.com/macros/s/AKfycbyHzqJDZfh1u5U1xY357YFCIf9fSApa1y2QM8mz_n1Yv-d4javb3d8Y12TRqHBw7kWGrQ/exec";
+      
+      const formBody = `Name=${encodeURIComponent(formData.name)}&Email=${encodeURIComponent(formData.email)}&Mobile=${encodeURIComponent(formData.mobile)}&Feedback=${encodeURIComponent(formData.message)}`;
+
+      const googleResponse = await fetch(googleSheetUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody
+      });
+
+      if (!googleResponse.ok) {
+        throw new Error('Failed to save to Google Sheets');
+      }
+
+      // Then, send email via EmailJS (optional - you can remove this if you only want Google Sheets)
+      const serviceID = "service_nfcu5ve";
+      const templateID = "template_2j9779r";
+      const publicKey = "GPa7XOO7AtlpBLQZF";
+
+      const templateParams = {
+        title: formData.title || 'New Contact Form Submission',
+        name: formData.name,
+        email: formData.email,
+        mobile: formData.mobile,
+        message: formData.message
+      };
+
+      try {
+        const emailResult = await emailjs.send(serviceID, templateID, templateParams, publicKey);
+        console.log("Email sent successfully:", emailResult.text);
+      } catch (emailError) {
+        console.error("EmailJS error (non-critical):", emailError);
+        // Don't throw error here as Google Sheets submission was successful
+      }
+
+      // Show success message
+      // showToast("🎉 Form submitted successfully! We'll get back to you soon.", 'success');
+      boomer.success("🎉 Form submitted successfully! We'll get back to you soon.");
+
       setFormData({ name: '', email: '', mobile: '', message: '' });
+
     } catch (error) {
-      console.error("EmailJS error:", error);
-        boomer.error("😓 Oops! Something went wrong. Please try again or contact us directly.", {
-          duration: 4000,
-        });
+      console.error("Error submitting form:", error);
+      // showToast("❌ Oops! Something went wrong. Please try again.", 'error');
+        boomer.error("❌ Oops! Something went wrong. Please try again.");
 
     } finally {
       setIsLoading(false);
@@ -202,6 +285,15 @@ const Contact = () => {
   return (
     <div className="font-sans text-gray-700 min-h-screen mt-15">
       <Navbar />
+      
+      {/* Toast Notification */}
+      <Toast 
+        message={toast.message} 
+        type={toast.type} 
+        isVisible={toast.show} 
+        onClose={hideToast} 
+      />
+
       {/* Hero Section */}
       <section
         className="relative h-[320px] flex items-center justify-center bg-center bg-cover overflow-hidden"
@@ -543,6 +635,5 @@ const Contact = () => {
     </div>
   );
 };
-
 
 export default Contact;
