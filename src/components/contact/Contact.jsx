@@ -247,40 +247,49 @@ const Contact = () => {
 
       // Then, send email via EmailJS (optional - you can remove this if you only want Google Sheets)
       const serviceID = "service_nfcu5ve";
-      const templateID = "template_2j9779r";
+      const ownerTemplateID = "template_2j9779r";
+      const userTemplateID = "template_74bwmc9";
       const publicKey = "GPa7XOO7AtlpBLQZF";
 
-      const templateParams = {
-        title: formData.title || 'New Contact Form Submission',
-        name: formData.name,
-        email: formData.email,
-        mobile: formData.mobile,
-        message: formData.message
-      };
+    const templateParams = {
+      title: formData.title || 'New Contact Form Submission',
+      name: formData.name,
+      email: formData.email,
+      mobile: formData.mobile,
+      message: formData.message
+    };
 
-      try {
-        const emailResult = await emailjs.send(serviceID, templateID, templateParams, publicKey);
-        console.log("Email sent successfully:", emailResult.text);
-      } catch (emailError) {
-        console.error("EmailJS error (non-critical):", emailError);
-        // Don't throw error here as Google Sheets submission was successful
-      }
+    try {
+      // Send email to the site owner
+      const ownerResult = await emailjs.send(serviceID, ownerTemplateID, templateParams, publicKey);
+      console.log("Email to owner sent successfully:", ownerResult.text);
+
+      // Send confirmation email to the user
+      const userResult = await emailjs.send(serviceID, userTemplateID, templateParams, publicKey);
+      console.log("Confirmation email to user sent successfully:", userResult.text);
 
       // Show success message
-      // showToast("🎉 Form submitted successfully! We'll get back to you soon.", 'success');
-      boomer.success("🎉 Form submitted successfully! We'll get back to you soon.");
+      boomer.success("🎉 Form submitted successfully! We'll get back to you soon.", "success");
 
+      // Clear the form
       setFormData({ name: '', email: '', mobile: '', message: '' });
 
     } catch (error) {
       console.error("Error submitting form:", error);
-      // showToast("❌ Oops! Something went wrong. Please try again.", 'error');
-        boomer.error("❌ Oops! Something went wrong. Please try again.");
+      // showToast("❌ Oops! Something went wrong. Please try again.", "error");
+            boomer.success("🎉 Form submitted successfully! We'll get back to you soon.");
 
     } finally {
       setIsLoading(false);
     }
-  };
+  } catch (error) {
+    console.error("Error saving to Google Sheets:", error);
+    // showToast("❌ Failed to save to Google Sheets. Please try again.", "error");
+            boomer.error("❌ Oops! Something went wrong. Please try again.");
+
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="font-sans text-gray-700 min-h-screen mt-15">
