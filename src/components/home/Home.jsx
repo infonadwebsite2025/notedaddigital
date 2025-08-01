@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Navbar from '../home/Navbar';
-import Meme from '../home/meme';
-import Contact from '../contact/Contact';
-import FoodCul from '../home/FoodCul';
-import OurCul from '../home/OurCul';
-// import Footer from '../footer/Footer';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import Navbar from './Navbar'; // This path seems correct if Navbar is in src/home/Navbar.jsx
+
+// Lazy load these components with the corrected paths
+const Meme = lazy(() => import('./meme')); // Corrected path
+const Contact = lazy(() => import('../contact/Contact')); // Assuming Contact is in src/contact/Contact.jsx
+const FoodCul = lazy(() => import('./FoodCul')); // Corrected path
+const OurCul = lazy(() => import('./OurCul')); // Corrected path
+// const Footer = lazy(() => import('../../footer/Footer')); // Corrected path if you use Footer
 
 const WorkSmartHomepage = () => {
   const [typedText, setTypedText] = useState('');
@@ -218,7 +220,7 @@ const WorkSmartHomepage = () => {
           <div className="relative mb-8">
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-gray-700 via-amber-500 via-purple-500 to-gray-700 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_200%] transform hover:scale-105 transition-all duration-700 relative z-10">
               Work Smart, Live Loud
-            </h1>
+            </h1>                                                                                                                                           
             
             {/* Glowing text shadow effect */}
             <div className="absolute inset-0 text-6xl md:text-8xl lg:text-9xl font-black text-amber-300 opacity-20 blur-2xl animate-pulse -z-10">
@@ -379,11 +381,20 @@ const WorkSmartHomepage = () => {
           </button>
         </div>
       </section>
-                      <Meme/>
-                      <FoodCul/>
-                      <OurCul/>
-                      <Contact/>
-                      {/* <Footer/>                                          */}
+
+      {/* Lazy Loaded Components with Suspense */}
+      <Suspense fallback={
+        <div className="text-center py-20 text-gray-500">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-400 mx-auto mb-4"></div>
+          <p>Loading content...</p>
+        </div>
+      }>
+        <Meme/>
+        <FoodCul/>
+        <OurCul/>
+        <Contact/>
+        {/* {<Footer/>} Uncomment if you use Footer */}
+      </Suspense>                                         
 
       <style jsx>{`
         @keyframes floatWords {
@@ -449,9 +460,6 @@ const WorkSmartHomepage = () => {
         }
       `}</style>
     </div>
-
-    //new 
-    
   );
 };
 

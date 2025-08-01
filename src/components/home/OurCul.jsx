@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card } from "antd";
-import * as echarts from "echarts";
+// import { Button, Card } from "antd";
+import Card from 'antd/es/card';
+import 'antd/es/card/style';
+// import * as echarts from "echarts";
+// import Button from 'antd/es/button';
+// import 'antd/es/button/style';
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 
