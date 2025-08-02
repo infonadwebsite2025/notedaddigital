@@ -13,6 +13,7 @@
     "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@tailwindcss/vite": "^4.1.11",
+    "@vercel/analytics": "^1.5.0",
     "antd": "^5.26.6",
     "canvas-confetti": "^1.9.3",
     "clsx": "^2.1.1",

@@ -18,6 +18,7 @@ import Service from './components/services/Service';
 import OurClients from './components/OurClients/OurClients';
 import Courses from './components/courses/course';
 import { Toaster } from 'react-hot-toast';
+import { Analytics } from '@vercel/analytics/react'; // ✅ Import the component
 // import DarkModeToggle from './components/ui/DarkModeToggle'; 
 
 function App() {
@@ -101,6 +102,8 @@ const canvasRef = useRef(null);
       
       {/* <Footer/> */}
     </Router>
+          <Analytics />
+
     </>
   );
 }
