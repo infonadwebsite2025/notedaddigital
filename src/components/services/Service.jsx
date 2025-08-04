@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Zap, Search, Smartphone, Users, TrendingUp, Palette, Video, Mic, ShoppingCart, Radio, Printer, Globe, Play, Pause, Sparkles } from 'lucide-react';
 import Navbar from '../home/Navbar';
+import Footer from '../footer/Footer';
+
 const ServicesCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
@@ -145,7 +147,7 @@ const ServicesCarousel = () => {
   const visibleServices = getVisibleServices();
 
   return (
-    <div className="w-full py-20 px-4 relative overflow-x-hidden">
+    <div className="w-full py-0 px-0 relative overflow-x-hidden mt-15">
       <Navbar />
       {/* Floating Geometric Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -551,6 +553,10 @@ const ServicesCarousel = () => {
           </div>
         )}
       </div>
+      <div className="mt-10 mb-0 p-0">
+  <Footer />
+</div>
+
 
       {/* Enhanced Custom CSS */}
       <style jsx>{`
