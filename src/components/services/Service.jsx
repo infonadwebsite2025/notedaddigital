@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Zap, Search, Smartphone, Users, TrendingUp, Palette, Video, Mic, ShoppingCart, Radio, Printer, Globe, Play, Pause, Sparkles } from 'lucide-react';
 import Navbar from '../home/Navbar';
-
 const ServicesCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
@@ -146,7 +145,7 @@ const ServicesCarousel = () => {
   const visibleServices = getVisibleServices();
 
   return (
-    <div className="w-full py-20 px-4 overflow-hidden relative">
+    <div className="w-full py-20 px-4 relative overflow-x-hidden">
       <Navbar />
       {/* Floating Geometric Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -569,17 +568,120 @@ const ServicesCarousel = () => {
           animation: spin-slow 20s linear infinite;
         }
 
+        /* Mobile responsive fixes - only for layout, keeping all effects */
         @media (max-width: 768px) {
-          .flex > div {
-            width: 100% !important;
-            transform: none !important;
-            opacity: 1 !important;
-            filter: none !important;
-            margin: 0 !important;
+          /* Adjust header spacing */
+          .text-6xl {
+            font-size: 3rem;
           }
           
-          .flex > div:not(:nth-child(2)) {
-            display: none;
+          .text-xl {
+            font-size: 1.125rem;
+          }
+
+          /* Make navigation controls smaller on mobile */
+          .w-16 {
+            width: 3rem !important;
+          }
+          
+          .h-16 {
+            height: 3rem !important;
+          }
+          
+          .w-7 {
+            width: 1.25rem !important;
+          }
+          
+          .h-7 {
+            height: 1.25rem !important;
+          }
+
+          /* Adjust card spacing */
+          .mx-4 {
+            margin-left: 0.5rem !important;
+            margin-right: 0.5rem !important;
+          }
+
+          /* Make text more readable */
+          .text-xl {
+            font-size: 1rem !important;
+          }
+
+          /* Adjust progress section */
+          .max-w-xl {
+            max-width: 20rem !important;
+          }
+
+          /* Auto-play indicator adjustment */
+          .bottom-8 {
+            bottom: 1rem !important;
+          }
+          
+          .right-8 {
+            right: 1rem !important;
+          }
+
+          /* Keep all transform effects but scale them appropriately */
+          .md\\:w-\\[380px\\] {
+            width: 85% !important;
+          }
+          
+          .md\\:w-\\[260px\\] {
+            width: 70% !important;
+          }
+
+          /* Ensure floating elements are still visible */
+          .left-10 {
+            left: 1rem !important;
+          }
+          
+          .right-10 {
+            right: 1rem !important;
+          }
+          
+          .w-32 {
+            width: 4rem !important;
+          }
+          
+          .h-32 {
+            height: 4rem !important;
+          }
+          
+          .w-24 {
+            width: 3rem !important;
+          }
+          
+          .h-24 {
+            height: 3rem !important;
+          }
+
+          /* Ensure space between navigation elements */
+          .space-x-12 > :not([hidden]) ~ :not([hidden]) {
+            margin-left: 2rem !important;
+          }
+          
+          .space-x-8 > :not([hidden]) ~ :not([hidden]) {
+            margin-left: 1.5rem !important;
+          }
+        }
+
+        /* Ultra-small screens */
+        @media (max-width: 480px) {
+          .text-6xl {
+            font-size: 2.5rem !important;
+          }
+          
+          .px-4 {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+          }
+          
+          .space-x-12 > :not([hidden]) ~ :not([hidden]) {
+            margin-left: 1rem !important;
+          }
+          
+          .md\\:w-\\[380px\\] {
+            width: 95% !important;
           }
         }
       `}</style>
