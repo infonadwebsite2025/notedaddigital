@@ -156,9 +156,9 @@ const Navbar = () => {
             className="p-2 rounded-lg hover:bg-purple-50 transition-all duration-300 group"
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-gray-700 group-hover:text-purple-600 group-hover:rotate-90 transition-all duration-300" />
+              <X className="w-6 h-6 text-white group-hover:text-purple-200 group-hover:rotate-90 transition-all duration-300" />
             ) : (
-              <Menu className="w-6 h-6 text-gray-700 group-hover:text-purple-600 group-hover:scale-110 transition-all duration-300" />
+              <Menu className="w-6 h-6 text-white group-hover:text-purple-200 group-hover:scale-110 transition-all duration-300" />
             )}
           </button>
         </div>
