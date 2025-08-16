@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import confetti from 'canvas-confetti';
-// import  DraggableCard from './pages/DraggableCardDemo';
+import  OurTeam from './pages/OurTeam';
 import Navbar from './components/home/Navbar';
 import Home from './components/home/Home';
 import Meme from './components/home/meme';
@@ -57,7 +57,6 @@ const canvasRef = useRef(null);
     }, 250);
   }, []);
 
-
   return (
     <>
       {/* Fixed confetti canvas */}
@@ -77,10 +76,9 @@ const canvasRef = useRef(null);
 
     <Router>
           <Toaster position="top-center" reverseOrder={false} />
-
                 {/* <DarkModeToggle /> */}
       <Routes>
-        {/* <Route path='/card' element={<DraggableCard/>}/> */}
+        <Route path='/our-team' element={<OurTeam/>}/> 
 
         <Route path="/" element={<Home />} />
         <Route path="/navbar" element={<Navbar />} />
