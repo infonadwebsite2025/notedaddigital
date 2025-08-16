@@ -5,6 +5,7 @@ import 'antd/es/card/style';
 // import * as echarts from "echarts";
 // import Button from 'antd/es/button';
 // import 'antd/es/button/style';
+import ourCulVideo from '../../assets/our_cul.mp4';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -48,15 +49,19 @@ const OurCul = () => {
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
             <div className="relative h-[500px] overflow-hidden">
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{
-                        backgroundImage:
-                            "url(https://readdy.ai/api/search-image?query=modern%20minimalist%20office%20workspace%20with%20creative%20accessories%20and%20branded%20items%20arranged%20on%20a%20clean%20white%20desk%20with%20soft%20natural%20lighting%20and%20subtle%20gradient%20background&width=1440&height=600&seq=1&orientation=landscape)",
-                    }}
-                >
+                <div className="absolute inset-0">
+                    <video
+                        src={ourCulVideo}
+                        className="w-full h-full object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                    />
+                    {/* Gradient overlay stays the same */}
                     <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/90 to-transparent"></div>
                 </div>
+
                 <div className="relative container mx-auto px-6 h-full flex items-center">
                     <div className="max-w-2xl text-white">
                         <h1 className="text-5xl font-bold mb-8 flex flex-wrap gap-3">
@@ -73,14 +78,18 @@ const OurCul = () => {
                             ))}
                         </h1>
                         <p
-                            className={`text-xl mb-8 transform transition-all duration-1000 delay-2000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
+                            className={`text-xl mb-8 transform transition-all duration-1000 delay-2000 ${isVisible
+                                    ? "translate-x-0 opacity-100"
+                                    : "-translate-x-full opacity-0"
+                                }`}
                         >
                             Culture isn't just talked about, it's worn.
                         </p>
                     </div>
                 </div>
             </div>
-            
+
+
             {/* Products section with slider */}
             <div className="py-20 bg-white">
                 <div className="container mx-auto px-6">
@@ -125,7 +134,7 @@ const OurCul = () => {
                 </div>
             </div>
 
-           </div>
+        </div>
     );
 };
 export default OurCul;
