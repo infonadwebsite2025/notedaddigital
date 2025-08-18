@@ -10,6 +10,7 @@ import imgcr3 from '../../assets/stuff/imgcr3.jpeg';
 import imgcr4 from '../../assets/stuff/imgcr4.jpg';
 import imgcr5 from '../../assets/stuff/imgcr5.jpg';
 import imgcr6 from '../../assets/stuff/imgcr6.jpg';
+import imgcont from '../../assets/stuff/imgcont.jpg';
 
 // Loading Spinner Component
 const LoadingSpinner = () => (
@@ -286,12 +287,13 @@ const Contact = () => {
       />
 
       {/* Hero Section */}
-      <section
-        className="relative h-[320px] flex items-center justify-center bg-center bg-cover overflow-hidden"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d')` }}
-      >
+    <section
+  className="relative h-[320px] flex items-center justify-center bg-center bg-cover bg-no-repeat overflow-hidden"
+  style={{ backgroundImage: `url(${imgcont})` }}
+>
         <div className="absolute inset-0 bg-gradient-to-br from-gray-700/80 via-gray-700/60 to-purple-600/40 z-0" />
-        <div className="relative z-10 px-12 py-10 rounded-2xl backdrop-blur-sm bg-white/10 shadow-2xl text-center max-w-3xl mx-4 hero-float">
+       <div className="relative z-10 px-12 py-10 rounded-2xl bg-white/2 shadow-2xl text-center max-w-3xl mx-4 hero-float">
+
           <h1 className="text-white text-5xl md:text-6xl font-extrabold tracking-wide drop-shadow-2xl hero-title">
             CONTACT US
           </h1>

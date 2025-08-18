@@ -6,6 +6,7 @@ import 'antd/es/card/style';
 // import Button from 'antd/es/button';
 // import 'antd/es/button/style';
 import ourCulVideo from '../../assets/our_cul.mp4';
+import coffeeImage from '../../assets/stuff/coffee.jpg';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -34,8 +35,7 @@ const OurCul = () => {
         {
             title: "Meeting Essentials",
             description: "Got a meeting with us? You're leaving with a mug.",
-            image:
-                "https://readdy.ai/api/search-image?query=stylish%20branded%20coffee%20mug%20on%20modern%20conference%20table%20with%20minimal%20corporate%20setting%20and%20soft%20ambient%20lighting%20perfect%20for%20business%20meetings&width=800&height=500&seq=3&orientation=landscape",
+            image: coffeeImage,
         },
         {
             title: "Premium Stationary",

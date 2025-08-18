@@ -192,28 +192,46 @@ const Navbar = () => {
 
                 {link.hasDropdown && openDropdownIndex === idx && (
                   <div className="pl-4 py-2 space-y-2 animate-in slide-in-from-top-2 fade-in duration-300">
-                    {link.dropdownItems.map((item, subIdx) => (
-                      <Link
-                        key={subIdx}
-                        to={routeMap[item]}
-                        className="block p-3 rounded-lg hover:bg-white/70 hover:text-purple-700 transition-all duration-300 text-sm text-gray-600 hover:scale-105 transform hover:shadow-md"
-                        style={{ animationDelay: `${subIdx * 50}ms` }}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item}
-                      </Link>
-                    ))}
+                                         {link.dropdownItems.map((item, subIdx) => (
+                       <Link
+                         key={subIdx}
+                         to={routeMap[item]}
+                         className="relative block p-3 rounded-lg hover:bg-white/70 hover:text-purple-700 transition-all duration-300 text-sm text-gray-600 hover:scale-105 transform hover:shadow-md group/item"
+                         style={{ animationDelay: `${subIdx * 50}ms` }}
+                         onClick={() => setIsMenuOpen(false)}
+                       >
+                         <span className="relative z-10">{item}</span>
+                         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 opacity-100 transition-all duration-300">
+                           <Star className="w-4 h-4 text-purple-500 group-hover/item:scale-110 group-hover/item:text-purple-600 transition-all duration-300" />
+                         </div>
+                       </Link>
+                     ))}
                   </div>
                 )}
               </li>
             ))}
 
-            <button className="mt-6 bg-gradient-to-r from-gray-900 to-black text-white py-4 px-6 rounded-2xl font-semibold shadow-lg flex items-center justify-center gap-2 hover:shadow-2xl hover:shadow-purple-500/25 hover:scale-105 transform transition-all duration-300 group">
-              <span className="group-hover:text-purple-200 transition-colors duration-300">
-                LET'S TALK
-              </span>
-              <Phone className="w-5 h-5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-              <Zap className="w-4 h-4 group-hover:text-yellow-400 transition-all duration-300" />
+            <button
+              onMouseEnter={() => setShowPhone(true)}
+              onMouseLeave={() => setShowPhone(false)}
+              className="mt-6 relative overflow-hidden bg-gradient-to-r from-gray-900 to-black text-white py-4 px-6 rounded-2xl font-semibold shadow-lg flex items-center justify-center gap-2 hover:shadow-2xl hover:shadow-purple-500/25 hover:scale-105 transform transition-all duration-300 group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <div className="relative z-10 flex items-center gap-2">
+                <div className="transition-all duration-300 ease-out">
+                  {showPhone ? (
+                    <span className="animate-in slide-in-from-left-5 fade-in duration-300 font-mono">
+                      {phoneNumber}
+                    </span>
+                  ) : (
+                    <span className="animate-in slide-in-from-right-5 fade-in duration-300 font-semibold tracking-wide">
+                      LET'S TALK
+                    </span>
+                  )}
+                </div>
+                <Phone className="w-5 h-5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+              </div>
             </button>
           </ul>
         </div>
