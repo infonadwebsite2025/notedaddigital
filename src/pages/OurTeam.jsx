@@ -10,6 +10,7 @@ import t6 from "../assets/team/t6.jpeg";
 import t7 from "../assets/team/t7.jpeg";
 import t8 from "../assets/team/t8.jpeg";
 import t9 from "../assets/team/t9.jpeg";
+import t10 from "../assets/team/t10.jpeg";
 
 // Custom draggable card components
 const DraggableCardContainer = ({ children, className = "" }) => {
@@ -150,6 +151,12 @@ const ResponsiveDraggableCards = () => {
     {
       title: "Northern Lights",
       image: t9,
+      className: "md:absolute md:top-44 md:right-[40%]",
+      rotation: "md:-rotate-8",
+    },
+    {
+      title: "Northern Lights",
+      image: t10,
       className: "md:absolute md:top-44 md:right-[40%]",
       rotation: "md:-rotate-8",
     },
