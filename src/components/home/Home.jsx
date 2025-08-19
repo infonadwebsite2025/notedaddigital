@@ -260,7 +260,7 @@ const WorkSmartHomepage = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
             </button>
             
-            <button className="group relative px-10 py-5 bg-white bg-opacity-90 backdrop-blur-xl border-2 border-gray-300 text-gray-700 font-bold text-lg rounded-full transition-all duration-700 transform hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:bg-gray-50 hover:border-purple-400 overflow-hidden">
+            <button className="group relative px-10 py-5 bg-white bg-opacity-90 backdrop-blur-xl border-2 border-gray-300 text-white font-bold text-lg rounded-full transition-all duration-700 transform hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:bg-gray-50 hover:border-purple-400 overflow-hidden">
               <span className="relative z-10 transition-all duration-300 group-hover:scale-110 group-hover:text-purple-600">
                 Discover More
               </span>
