@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Navbar from '../components/home/Navbar';
+import Footer from '../components/footer/Footer';
 import t1 from "../assets/team/t1.jpeg";
 import t2 from "../assets/team/t2.jpeg";
 import t3 from "../assets/team/t3.jpeg";
@@ -154,70 +156,79 @@ const ResponsiveDraggableCards = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800">
-      <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4">
-        {/* Background text */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="mx-auto max-w-xs text-center text-lg font-black text-neutral-400 sm:max-w-sm sm:text-xl md:max-w-md md:text-2xl lg:text-4xl dark:text-neutral-600">
-            Drag the cards around to explore different perspectives
-          </p>
-        </div>
 
-        {/* Mobile: Grid layout, Desktop: Absolute positioned */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:contents lg:gap-8">
-          {items.map((item, index) => (
-            <DraggableCardBody
-              key={index}
-              className={`
+    <div className='relative'>
+      {/* Navbar Fixed at Top */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <Navbar />
+      </div>
+      <div className="min-h-screen w-full pt-24 md:pt-28 bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800">
+        <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4">
+          {/* Background text */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <p className="mx-auto max-w-xs text-center text-lg font-black text-neutral-400 sm:max-w-sm sm:text-xl md:max-w-md md:text-2xl lg:text-4xl dark:text-neutral-600">
+              Drag the cards around to explore different perspectives
+            </p>
+          </div>
+
+          {/* Mobile: Grid layout, Desktop: Absolute positioned */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:contents lg:gap-8">
+            {items.map((item, index) => (
+              <DraggableCardBody
+                key={index}
+                className={`
                 ${item.className} 
                 ${item.rotation}
                 transition-all duration-300 hover:scale-105
                 md:hover:rotate-0
               `}
-            >
-              <div className="group relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:shadow-2xl dark:bg-slate-800">
-                {/* Image container */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110 sm:h-56 md:h-64 md:w-72 lg:h-72 lg:w-80"
-                    loading="lazy"
-                  />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </div>
+              >
+                <div className="group relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:shadow-2xl dark:bg-slate-800">
+                  {/* Image container */}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110 sm:h-56 md:h-64 md:w-72 lg:h-72 lg:w-80"
+                      loading="lazy"
+                    />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </div>
 
-                {/* Card content */}
-                <div className="p-4 md:p-6">
-                  <div className="text-center">
-                    <h3 className="text-lg font-extrabold text-neutral-900 sm:text-xl md:text-2xl dark:text-neutral-200">
-                      {item.name}
-                    </h3>
-                    <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                      {item.title}
+                  {/* Card content */}
+                  <div className="p-4 md:p-6">
+                    <div className="text-center">
+                      <h3 className="text-lg font-extrabold text-neutral-900 sm:text-xl md:text-2xl dark:text-neutral-200">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                        {item.title}
+                      </p>
+                    </div>
+                    {/* Mobile-only description */}
+                    <p className="mt-2 text-center text-sm text-neutral-600 md:hidden dark:text-neutral-400">
+                      Drag to explore
                     </p>
                   </div>
-                  {/* Mobile-only description */}
-                  <p className="mt-2 text-center text-sm text-neutral-600 md:hidden dark:text-neutral-400">
-                    Drag to explore
-                  </p>
+
+                  {/* Decorative corner accent */}
+                  <div className="absolute -right-2 -top-2 h-8 w-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 transition-all duration-300 group-hover:opacity-100 md:h-6 md:w-6" />
                 </div>
+              </DraggableCardBody>
+            ))}
+          </div>
 
-                {/* Decorative corner accent */}
-                <div className="absolute -right-2 -top-2 h-8 w-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 transition-all duration-300 group-hover:opacity-100 md:h-6 md:w-6" />
-              </div>
-            </DraggableCardBody>
-          ))}
-        </div>
-
-        {/* Instructions for desktop */}
-        <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 transform rounded-full bg-white/80 px-6 py-3 text-sm font-medium text-neutral-600 backdrop-blur-sm md:block dark:bg-slate-800/80 dark:text-neutral-300">
-          Click and drag cards to move them around
-        </div>
-      </DraggableCardContainer>
-    </div>
-  );
+          {/* Instructions for desktop */}
+          <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 transform rounded-full bg-white/80 px-6 py-3 text-sm font-medium text-neutral-600 backdrop-blur-sm md:block dark:bg-slate-800/80 dark:text-neutral-300">
+            Click and drag cards to move them around
+          </div>
+        </DraggableCardContainer>
+      </div>
+          <Footer/>
+      
+      </div>
+      );
 };
 
-export default ResponsiveDraggableCards;
+      export default ResponsiveDraggableCards;
