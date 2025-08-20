@@ -20,6 +20,7 @@ import Courses from './components/courses/course';
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react'; // ✅ Import the component
 // import DarkModeToggle from './components/ui/DarkModeToggle'; 
+import ScrollToTop from '../src/components/ScrollToTop/ScrollToTop';  // ✅ import
 
 function App() {
   // canvas confetti animation
@@ -75,6 +76,7 @@ const canvasRef = useRef(null);
       />
 
     <Router>
+      <ScrollToTop />
           <Toaster position="top-center" reverseOrder={false} />
                 {/* <DarkModeToggle /> */}
       <Routes>
