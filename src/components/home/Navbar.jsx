@@ -7,6 +7,7 @@ const routeMap = {
   'Who We Are?': '/who-we-are',
   'What We Do?': '/what-we-do',
   'Why Choose Us?': '/why-choose-us',
+  'Our Team': '/our-team',
   'The Noted Vibe': '/noted-vibe',
   'Wanna Be Part of This Vibe?': '/join-us',
 };
@@ -20,6 +21,7 @@ const navLinks = [
       'Who We Are?',
       'What We Do?',
       'Why Choose Us?',
+      'Our Team',
       'The Noted Vibe',
       'Wanna Be Part of This Vibe?',
     ],
