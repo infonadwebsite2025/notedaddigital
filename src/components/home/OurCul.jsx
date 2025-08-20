@@ -7,6 +7,8 @@ import 'antd/es/card/style';
 // import 'antd/es/button/style';
 import ourCulVideo from '../../assets/our_cul.mp4';
 import coffeeImage from '../../assets/stuff/coffee.jpg';
+import karoImage from '../../assets/stuff/karo.png';
+import notebookImage from '../../assets/stuff/notebook.jpeg';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -29,8 +31,7 @@ const OurCul = () => {
             title: "Fresh Branded Accessories",
             description:
                 "From customized tees to slick visiting cards — we drop 4+ fresh branded accessories every year.",
-            image:
-                "https://readdy.ai/api/search-image?query=elegant%20collection%20of%20modern%20branded%20corporate%20accessories%20including%20customized%20tees%20business%20cards%20and%20promotional%20items%20arranged%20on%20minimalist%20white%20surface%20with%20soft%20lighting&width=800&height=500&seq=2&orientation=landscape",
+            image: karoImage,
         },
         {
             title: "Meeting Essentials",
@@ -41,8 +42,7 @@ const OurCul = () => {
             title: "Premium Stationary",
             description:
                 "Elevate your workspace with our premium branded stationary collection.",
-            image:
-                "https://readdy.ai/api/search-image?query=luxury%20branded%20corporate%20stationery%20items%20including%20notebooks%20pens%20and%20organizers%20arranged%20aesthetically%20on%20clean%20white%20surface%20with%20professional%20lighting&width=800&height=500&seq=4&orientation=landscape",
+            image: notebookImage,
         },
     ];
     return (
