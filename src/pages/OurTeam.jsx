@@ -174,8 +174,7 @@ const ResponsiveDraggableCards = () => {
           {/* Background text */}
           <div className="absolute inset-0 flex items-center justify-center">
             <p className="mx-auto max-w-xs text-center text-lg font-black text-neutral-400 sm:max-w-sm sm:text-xl md:max-w-md md:text-2xl lg:text-4xl dark:text-neutral-600">
-              Drag the cards around to explore different perspectives
-            </p>
+“We’re not just a team… we’re the Wi-Fi that keeps everything connected.”            </p>
           </div>
 
           {/* Mobile: Grid layout, Desktop: Absolute positioned */}
