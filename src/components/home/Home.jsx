@@ -255,7 +255,7 @@ const WorkSmartHomepage = () => {
 
           {/* Enhanced floating action buttons */}
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 mt-12">
-            <button className="group relative px-10 py-5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white font-bold text-lg rounded-full transition-all duration-700 transform hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-amber-500/50 animate-bounce-slow overflow-hidden">
+            <button onClick={() => smoothScrollTo('contact')} className="group relative px-10 py-5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white font-bold text-lg rounded-full transition-all duration-700 transform hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-amber-500/50 animate-bounce-slow overflow-hidden">
               <span className="relative z-10 transition-all duration-300 group-hover:scale-110">
                 Get Started Now
               </span>
@@ -263,12 +263,14 @@ const WorkSmartHomepage = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
             </button>
 
-            <button className="group relative px-10 py-5 bg-white bg-opacity-90 backdrop-blur-xl border-2 border-gray-300 text-white font-bold text-lg rounded-full transition-all duration-700 transform hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:bg-gray-50 hover:border-purple-400 overflow-hidden">
-              <span className="relative z-10 transition-all duration-300 group-hover:scale-110 group-hover:text-purple-600">
-                Discover More
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-200 to-transparent opacity-0 group-hover:opacity-50 transition-all duration-700 transform translate-x-full group-hover:-translate-x-full"></div>
-            </button>
+            <button 
+  onClick={() => smoothScrollTo('philosophy')}
+  className="group relative px-10 py-5 bg-white bg-opacity-90 backdrop-blur-xl border-2 border-gray-300 text-white font-bold text-lg rounded-full transition-all duration-700 transform hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:bg-gray-50 hover:border-purple-400 overflow-hidden"
+>
+  <span className="relative z-10 transition-all duration-300 group-hover:scale-110 group-hover:text-purple-600">
+    Discover More
+  </span>
+</button>
           </div>
 
           {/* Scroll indicator */}
@@ -281,7 +283,7 @@ const WorkSmartHomepage = () => {
       </section>
 
       {/* Enhanced Philosophy Section */}
-      <section className="py-20 px-4 max-w-7xl mx-auto relative z-10">
+      <section id="philosophy" className="py-20 px-4 max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent mb-6 animate-fade-in relative">
             Our Philosophy
@@ -367,7 +369,7 @@ const WorkSmartHomepage = () => {
             Join thousands of successful businesses that have revolutionized their approach with our solutions
           </p>
 
-          <button className="group relative inline-block px-16 py-6 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white font-bold text-xl rounded-full transition-all duration-700 transform hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-amber-500/50 overflow-hidden">
+          <button onClick={() => smoothScrollTo('contact')} className="group relative inline-block px-16 py-6 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white font-bold text-xl rounded-full transition-all duration-700 transform hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-amber-500/50 overflow-hidden">
             <span className="relative z-10 transition-all duration-300 group-hover:scale-110">
               Start Your Journey Today
             </span>
@@ -394,7 +396,9 @@ const WorkSmartHomepage = () => {
         <Meme />
         <FoodCul />
         <OurCul />
-        <Contact />
+        <div id="contact">
+          <Contact />
+        </div>
         {/* {<Footer/>} Uncomment if you use Footer */}
       </Suspense>
 
