@@ -14,7 +14,7 @@ const routeMap = {
 const navLinks = [
   { name: 'Home', hasDropdown: false, path: '/' },
   {
-    name: 'About',    
+    name: 'About',
     hasDropdown: true,
     dropdownItems: [
       'Who We Are?',
@@ -68,20 +68,20 @@ const Navbar = () => {
           </span>
         </Link> */}
         <Link
-  to="/"
-  className="flex items-center gap-3 group cursor-pointer"
->
+          to="/"
+          className="flex items-center gap-3 group cursor-pointer"
+        >
 
-  {/* Logo Image */}
-<img
-  src={notedad} // replace with your logo path
-  alt="Noted-Ad Logo"
-  width="48"   // explicit width in px
-  height="48"  // explicit height in px
-  className="h-12 w-auto group-hover:scale-105 group-hover:animate-spin transition-transform duration-300"
-/>
+          {/* Logo Image */}
+          <img
+            src={notedad} // replace with your logo path
+            alt="Noted-Ad Logo"
+            width="48"   // explicit width in px
+            height="48"  // explicit height in px
+            className="h-12 w-auto group-hover:scale-105 group-hover:animate-spin transition-transform duration-300"
+          />
 
-</Link>
+        </Link>
 
 
         {/* Navlinks mapping of about us  */}
