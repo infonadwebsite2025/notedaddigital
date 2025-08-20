@@ -73,11 +73,14 @@ const Navbar = () => {
 >
 
   {/* Logo Image */}
-  <img
-    src={notedad} // replace with your logo path
-    alt="Noted-Ad Logo"
-    className="h-12 w-auto group-hover:scale-105 group-hover:animate-spin transition-transform duration-300"
-  />
+<img
+  src={notedad} // replace with your logo path
+  alt="Noted-Ad Logo"
+  width="48"   // explicit width in px
+  height="48"  // explicit height in px
+  className="h-12 w-auto group-hover:scale-105 group-hover:animate-spin transition-transform duration-300"
+/>
+
 </Link>
 
 
