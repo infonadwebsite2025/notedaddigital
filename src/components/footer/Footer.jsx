@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-gray-800 to-gray-900 text-white py-16 px-6 md:px-24 position-relative">
-      <div className="grid md:grid-cols-4 gap-12">
+    <footer className="bg-gradient-to-br from-gray-800 to-gray-900 text-white py-10 px-6 md:px-24 position-relative">
+      <div className="grid md:grid-cols-4 gap-8">
         {/* Agency Info */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-purple-400 bg-clip-text text-transparent">
             Digital Agency
           </div>
@@ -18,7 +18,7 @@ const Footer = () => {
         
         {/* Address */}
         <div>
-          <h3 className="text-lg font-bold mb-6 text-amber-400 flex items-center gap-2">
+          <h3 className="text-lg font-bold mb-4 text-amber-400 flex items-center gap-2">
             <span className="text-xl">📍</span> Address
           </h3>
           <ul className="space-y-3 text-sm text-gray-300">
@@ -39,7 +39,7 @@ const Footer = () => {
         
         {/* Links */}
         <div>
-          <h3 className="text-lg font-bold mb-6 text-purple-400 flex items-center gap-2">
+          <h3 className="text-lg font-bold mb-4 text-purple-400 flex items-center gap-2">
             <span className="text-xl">🔗</span> Links
           </h3>
           <ul className="space-y-3 text-sm text-gray-300">
@@ -68,7 +68,7 @@ const Footer = () => {
         
         {/* Socials */}
         <div>
-          <h3 className="text-lg font-bold mb-6 text-amber-400 flex items-center gap-2">
+          <h3 className="text-lg font-bold mb-4 text-amber-400 flex items-center gap-2">
             <span className="text-xl">🌐</span> Follow Us
           </h3>
           <div className="flex space-x-4">
@@ -103,6 +103,9 @@ const Footer = () => {
             </a>
           </div>
         </div>
+      </div>
+      <div className="mt-6 pt-4 border-t border-gray-700 text-center text-sm text-gray-400">
+        Powered by Notedaddigital Pvt. Ltd. All Rights Reserved.
       </div>
     </footer>
   );
