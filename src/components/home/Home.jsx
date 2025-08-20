@@ -19,10 +19,10 @@ const WorkSmartHomepage = () => {
 
   // Background animated words
   const wordsList = [
-    "One Stop Solution", "NotedAd", "Innovation Hub", "Creative Studio", 
+    "One Stop Solution", "NotedAd", "Innovation Hub", "Creative Studio",
     "Digital Excellence", "Smart Solutions", "Future Ready", "Growth Partner",
     "Success Stories", "Brand Evolution", "Market Leaders", "Vision 2025",
-    "Strategic Minds", "Creative Force", "Tech Pioneers", "Business Growth", "Website Development", "Social Media Management", 
+    "Strategic Minds", "Creative Force", "Tech Pioneers", "Business Growth", "Website Development", "Social Media Management",
     "Paid Ads", "Podcast", "Social Media Handling", "Graphic Designing", "Video Editing", "Training Programs", "Digital Marketing",
     "Website Management"
   ];
@@ -31,7 +31,7 @@ const WorkSmartHomepage = () => {
     // Handle scroll effect with parallax
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      
+
       // Parallax effect for hero
       if (heroRef.current) {
         heroRef.current.style.transform = `translateY(${scrollY * 0.3}px)`;
@@ -65,7 +65,7 @@ const WorkSmartHomepage = () => {
     });
 
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
@@ -161,12 +161,12 @@ const WorkSmartHomepage = () => {
     }
   };
 
-  
+
   return (
-    
+
     <div className="max-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-800 overflow-x-hidden relative">
       {/* Animated Background Words */}
-      <Navbar/>
+      <Navbar />
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden ">
         {backgroundWords.map((word) => (
           <div
@@ -202,16 +202,15 @@ const WorkSmartHomepage = () => {
               animationDuration: `${Math.random() * 3 + 2}s`
             }}
           >
-            <div className={`w-${Math.floor(Math.random() * 4) + 2} h-${Math.floor(Math.random() * 4) + 2} bg-gradient-to-r ${
-              ['from-blue-200 to-blue-300', 'from-purple-200 to-purple-300', 'from-amber-200 to-amber-300', 'from-pink-200 to-pink-300'][Math.floor(Math.random() * 4)]
-            } rounded-full opacity-20 animate-bounce`}></div>
+            <div className={`w-${Math.floor(Math.random() * 4) + 2} h-${Math.floor(Math.random() * 4) + 2} bg-gradient-to-r ${['from-blue-200 to-blue-300', 'from-purple-200 to-purple-300', 'from-amber-200 to-amber-300', 'from-pink-200 to-pink-300'][Math.floor(Math.random() * 4)]
+              } rounded-full opacity-20 animate-bounce`}></div>
           </div>
         ))}
       </div>
 
       {/* Enhanced Hero Section */}
-      <section 
-        id="home" 
+      <section
+        id="home"
         ref={heroRef}
         className="min-h-screen flex items-center justify-center relative z-10 px-4"
       >
@@ -220,36 +219,40 @@ const WorkSmartHomepage = () => {
           <div className="relative mb-8">
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-gray-700 via-amber-500 via-purple-500 to-gray-700 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_200%] transform hover:scale-105 transition-all duration-700 relative z-10">
               Work Smart, Live Loud
-            </h1>                                                                                                                                           
-            
+            </h1>
+
             {/* Glowing text shadow effect */}
-            <div className="absolute inset-0 text-6xl md:text-8xl lg:text-9xl font-black text-amber-300 opacity-20 blur-2xl animate-pulse -z-10">
+            <div
+              className="absolute inset-0 text-6xl md:text-8xl lg:text-9xl font-black text-amber-300 opacity-20 blur-2xl animate-pulse -z-10 pointer-events-none select-none"
+              aria-hidden="true"
+            >
               Work Smart, Live Loud
             </div>
-            
+
+
             {/* Animated underline */}
             <div className="w-32 h-2 bg-gradient-to-r from-amber-400 to-purple-500 mx-auto mt-4 rounded-full animate-pulse"></div>
           </div>
 
-        <div className="relative mb-12 min-h-[4rem]">
-  {/* Static container with fixed height to prevent shifting */}
-  <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 min-h-[4rem] transition-transform duration-500 transform hover:scale-105 relative z-10">
-    <span className="inline-block w-full">
-      {typedText}
-      <span className="text-amber-500 font-bold">|</span>
-    </span>
-  </p>
+          <div className="relative mb-12 min-h-[4rem]">
+            {/* Static container with fixed height to prevent shifting */}
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 min-h-[4rem] transition-transform duration-500 transform hover:scale-105 relative z-10">
+              <span className="inline-block w-full">
+                {typedText}
+                <span className="text-amber-500 font-bold">|</span>
+              </span>
+            </p>
 
-  {/* Subtitle glow effect */}
-  <div
-    className="absolute inset-0 text-xl md:text-2xl lg:text-3xl text-gray-400 opacity-10 blur-lg -z-10 pointer-events-none select-none"
-    aria-hidden="true"
-  >
-    {typedText}
-  </div>
-</div>
+            {/* Subtitle glow effect */}
+            <div
+              className="absolute inset-0 text-xl md:text-2xl lg:text-3xl text-gray-400 opacity-10 blur-lg -z-10 pointer-events-none select-none"
+              aria-hidden="true"
+            >
+              {typedText}
+            </div>
+          </div>
 
-          
+
           {/* Enhanced floating action buttons */}
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 mt-12">
             <button className="group relative px-10 py-5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white font-bold text-lg rounded-full transition-all duration-700 transform hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-amber-500/50 animate-bounce-slow overflow-hidden">
@@ -259,7 +262,7 @@ const WorkSmartHomepage = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 transition-all duration-700 transform -translate-x-full group-hover:translate-x-full"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
             </button>
-            
+
             <button className="group relative px-10 py-5 bg-white bg-opacity-90 backdrop-blur-xl border-2 border-gray-300 text-white font-bold text-lg rounded-full transition-all duration-700 transform hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:bg-gray-50 hover:border-purple-400 overflow-hidden">
               <span className="relative z-10 transition-all duration-300 group-hover:scale-110 group-hover:text-purple-600">
                 Discover More
@@ -291,16 +294,15 @@ const WorkSmartHomepage = () => {
             Discover the principles that drive our innovation and excellence
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
           {philosophyCards.map((card, index) => (
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
               id={`card-${index}`}
-              className={`group bg-white bg-opacity-95 backdrop-blur-xl border border-gray-200 rounded-3xl p-8 transition-all duration-700 cursor-pointer relative overflow-hidden transform perspective-1000 hover:shadow-2xl ${
-                isVisible[`card-${index}`] ? 'animate-slide-up' : 'opacity-0 translate-y-20'
-              }`}
+              className={`group bg-white bg-opacity-95 backdrop-blur-xl border border-gray-200 rounded-3xl p-8 transition-all duration-700 cursor-pointer relative overflow-hidden transform perspective-1000 hover:shadow-2xl ${isVisible[`card-${index}`] ? 'animate-slide-up' : 'opacity-0 translate-y-20'
+                }`}
               style={{ animationDelay: `${card.delay}s` }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-20px) scale(1.05) rotateX(10deg)';
@@ -314,11 +316,11 @@ const WorkSmartHomepage = () => {
               {/* Multiple animated background layers */}
               <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-0 group-hover:opacity-10 transition-all duration-500 rounded-3xl`}></div>
               <div className={`absolute inset-0 bg-gradient-to-tr from-transparent via-${card.accent}-100 to-transparent opacity-0 group-hover:opacity-20 transition-all duration-700 rounded-3xl`}></div>
-              
+
               {/* Complex shimmer effects */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-60 transition-all duration-700 transform -translate-x-full group-hover:translate-x-full"></div>
               <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-${card.accent}-200 to-transparent opacity-0 group-hover:opacity-30 transition-all duration-500 transform translate-x-full group-hover:-translate-x-full`} style={{ animationDelay: '200ms' }}></div>
-              
+
               {/* Content with enhanced animations */}
               <div className="relative z-10">
                 <div className="relative mb-6">
@@ -329,22 +331,22 @@ const WorkSmartHomepage = () => {
                     {card.icon}
                   </div>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold mb-4 text-gray-800 group-hover:text-gray-900 transition-all duration-300 relative">
                   {card.title}
                   <div className={`absolute inset-0 bg-gradient-to-r ${card.color} bg-clip-text text-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
                     {card.title}
                   </div>
                 </h3>
-                
+
                 <p className="text-gray-600 leading-relaxed transition-all duration-300 group-hover:text-gray-700 transform group-hover:translate-y-1">
                   {card.text}
                 </p>
               </div>
-              
+
               {/* Glowing animated border */}
               <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${card.color} opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse`}
-                   style={{ padding: '2px' }}>
+                style={{ padding: '2px' }}>
                 <div className="w-full h-full bg-white rounded-3xl opacity-95"></div>
               </div>
             </div>
@@ -364,17 +366,17 @@ const WorkSmartHomepage = () => {
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
             Join thousands of successful businesses that have revolutionized their approach with our solutions
           </p>
-          
+
           <button className="group relative inline-block px-16 py-6 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white font-bold text-xl rounded-full transition-all duration-700 transform hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-amber-500/50 overflow-hidden">
             <span className="relative z-10 transition-all duration-300 group-hover:scale-110">
               Start Your Journey Today
             </span>
-            
+
             {/* Multiple animated overlays */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 transition-all duration-700 transform -translate-x-full group-hover:translate-x-full"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-300 to-transparent opacity-0 group-hover:opacity-30 transition-all duration-500 transform translate-x-full group-hover:-translate-x-full" style={{ animationDelay: '100ms' }}></div>
-            
+
             {/* Expanding ring effects */}
             <div className="absolute inset-0 rounded-full border-4 border-amber-300 opacity-0 group-hover:opacity-100 transition-all duration-300 animate-ping"></div>
             <div className="absolute inset-0 rounded-full border-2 border-white opacity-0 group-hover:opacity-50 transition-all duration-500 animate-pulse"></div>
@@ -389,12 +391,12 @@ const WorkSmartHomepage = () => {
           <p>Loading content...</p>
         </div>
       }>
-        <Meme/>
-        <FoodCul/>
-        <OurCul/>
-        <Contact/>
+        <Meme />
+        <FoodCul />
+        <OurCul />
+        <Contact />
         {/* {<Footer/>} Uncomment if you use Footer */}
-      </Suspense>                                         
+      </Suspense>
 
       <style jsx>{`
         @keyframes floatWords {
