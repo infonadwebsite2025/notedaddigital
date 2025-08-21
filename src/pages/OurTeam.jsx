@@ -84,7 +84,7 @@ const DraggableCardBody = ({ children, className = "", initialPosition = { x: 0,
   return (
     <div
       ref={cardRef}
-      className={`cursor-grab active:cursor-grabbing touch-none select-none ${isDragging ? 'z-50' : 'z-10'} ${className}`}
+      className={`cursor-grab active:cursor-grabbing ${isDragging ? 'z-50' : 'z-10'} ${className}`}
       style={{
         transform: `translate(${position.x}px, ${position.y}px)`,
         transition: isDragging ? 'none' : 'transform 0.2s ease-out'
@@ -103,62 +103,62 @@ const ResponsiveDraggableCards = () => {
       name: "Vanish Sharma",
       title: "Ocean View",
       image: t1,
-      className: "lg:absolute lg:top-10 lg:left-[8%]",
-      rotation: "lg:-rotate-3",
+      className: "md:absolute md:top-10 md:left-[15%]",
+      rotation: "md:-rotate-3",
     },
     {
       title: "Digital Marketing",
       image: t2,
-      className: "lg:absolute lg:top-16 lg:left-[22%]",
-      rotation: "lg:-rotate-6",
+      className: "md:absolute md:top-32 md:left-[25%]",
+      rotation: "md:-rotate-6",
     },
     {
       title: "Digital Marketing",
       image: t3,
-      className: "lg:absolute lg:top-6 lg:left-[38%]",
-      rotation: "lg:rotate-12",
+      className: "md:absolute md:top-8 md:left-[45%]",
+      rotation: "md:rotate-12",
     },
     {
       title: "Desert Vista",
       image: t4,
-      className: "lg:absolute lg:top-24 lg:left-[55%]",
-      rotation: "lg:rotate-6",
+      className: "md:absolute md:top-40 md:left-[60%]",
+      rotation: "md:rotate-6",
     },
     {
       title: "Ocean Shore",
       image: t5,
-      className: "lg:absolute lg:top-12 lg:left-[70%]",
-      rotation: "lg:rotate-3",
+      className: "md:absolute md:top-16 md:right-[25%]",
+      rotation: "md:rotate-3",
     },
     {
       title: "Northern Lights",
       image: t6,
-      className: "lg:absolute lg:top-40 lg:left-[12%]",
-      rotation: "lg:-rotate-8",
+      className: "md:absolute md:top-44 md:right-[40%]",
+      rotation: "md:-rotate-8",
     },
     {
       title: "Northern Lights",
       image: t7,
-      className: "lg:absolute lg:top-44 lg:left-[28%]",
-      rotation: "lg:-rotate-8",
+      className: "md:absolute md:top-44 md:right-[40%]",
+      rotation: "md:-rotate-8",
     },
     {
       title: "Northern Lights",
       image: t8,
-      className: "lg:absolute lg:top-36 lg:left-[44%]",
-      rotation: "lg:-rotate-8",
+      className: "md:absolute md:top-44 md:right-[40%]",
+      rotation: "md:-rotate-8",
     },
     {
       title: "Northern Lights",
       image: t9,
-      className: "lg:absolute lg:top-48 lg:left-[60%]",
-      rotation: "lg:-rotate-8",
+      className: "md:absolute md:top-44 md:right-[40%]",
+      rotation: "md:-rotate-8",
     },
     {
       title: "Northern Lights",
       image: t10,
-      className: "lg:absolute lg:top-40 lg:left-[76%]",
-      rotation: "lg:-rotate-8",
+      className: "md:absolute md:top-44 md:right-[40%]",
+      rotation: "md:-rotate-8",
     },
   ];
 
@@ -170,15 +170,15 @@ const ResponsiveDraggableCards = () => {
         <Navbar />
       </div>
       <div className="min-h-screen w-full pt-24 md:pt-28 bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800">
-        <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 lg:py-20 max-w-7xl mx-auto">
+        <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4">
           {/* Background text */}
           <div className="absolute inset-0 flex items-center justify-center">
             <p className="mx-auto max-w-xs text-center text-lg font-black text-neutral-400 sm:max-w-sm sm:text-xl md:max-w-md md:text-2xl lg:text-4xl dark:text-neutral-600">
 “We’re not just a team… we’re the Wi-Fi that keeps everything connected.”            </p>
           </div>
 
-          {/* Mobile/Tablet: Grid layout, Desktop: Absolute positioned */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 md:gap-8 lg:contents lg:gap-8 xl:gap-10">
+          {/* Mobile: Grid layout, Desktop: Absolute positioned */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:contents lg:gap-8">
             {items.map((item, index) => (
               <DraggableCardBody
                 key={index}
@@ -186,7 +186,7 @@ const ResponsiveDraggableCards = () => {
                 ${item.className} 
                 ${item.rotation}
                 transition-all duration-300 hover:scale-105
-                lg:hover:rotate-0
+                md:hover:rotate-0
               `}
               >
                 <div className="group relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:shadow-2xl dark:bg-slate-800">
@@ -195,7 +195,7 @@ const ResponsiveDraggableCards = () => {
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110 sm:h-56 md:h-64 lg:h-72 lg:w-72 xl:h-80 xl:w-80"
+                      className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110 sm:h-56 md:h-64 md:w-72 lg:h-72 lg:w-80"
                       loading="lazy"
                     />
                     {/* Gradient overlay */}
@@ -226,7 +226,7 @@ const ResponsiveDraggableCards = () => {
           </div>
 
           {/* Instructions for desktop */}
-          <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 transform rounded-full bg-white/80 px-6 py-3 text-sm font-medium text-neutral-600 backdrop-blur-sm lg:block dark:bg-slate-800/80 dark:text-neutral-300">
+          <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 transform rounded-full bg-white/80 px-6 py-3 text-sm font-medium text-neutral-600 backdrop-blur-sm md:block dark:bg-slate-800/80 dark:text-neutral-300">
             Click and drag cards to move them around
           </div>
         </DraggableCardContainer>
