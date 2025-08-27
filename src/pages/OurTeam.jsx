@@ -101,82 +101,92 @@ const DraggableCardBody = ({ children, className = "", initialPosition = { x: 0,
 const ResponsiveDraggableCards = () => {
   const items = [
     {
-      name: "Vanish Sharma",
-      title: "Ocean View",
+      name: "Aashiv",
+      title: "Social Media Executive",
       image: t1,
-      className: "md:absolute md:top-10 md:left-[15%]",
-      rotation: "md:-rotate-3",
+      className: "md:absolute md:top-16 md:left-[2%]",
+      rotation: "",
     },
     {
-      title: "Digital Marketing",
-      image: t2,
-      className: "md:absolute md:top-32 md:left-[25%]",
-      rotation: "md:-rotate-6",
-    },
-    {
-      title: "Digital Marketing",
-      image: t3,
-      className: "md:absolute md:top-8 md:left-[45%]",
-      rotation: "md:rotate-12",
-    },
-    {
-      title: "Desert Vista",
-      image: t4,
-      className: "md:absolute md:top-40 md:left-[60%]",
-      rotation: "md:rotate-6",
-    },
-    {
-      title: "Ocean Shore",
-      image: t5,
-      className: "md:absolute md:top-16 md:right-[25%]",
-      rotation: "md:rotate-3",
-    },
-    {
-      title: "Northern Lights",
-      image: t6,
-      className: "md:absolute md:top-44 md:right-[40%]",
-      rotation: "md:-rotate-8",
-    },
-    {
-      title: "Northern Lights",
-      image: t7,
-      className: "md:absolute md:top-44 md:right-[40%]",
-      rotation: "md:-rotate-8",
-    },
-    {
-      title: "Northern Lights",
-      image: t8,
-      className: "md:absolute md:top-44 md:right-[40%]",
-      rotation: "md:-rotate-8",
-    },
-    {
-      title: "Northern Lights",
+      name: "Aditya",
+      title: "Senior Video Editor",
       image: t9,
-      className: "md:absolute md:top-44 md:right-[40%]",
-      rotation: "md:-rotate-8",
+      className: "md:absolute md:top-16 md:left-[18%]",
+      rotation: "",
     },
     {
-      title: "Northern Lights",
+       name: "Pranav",
+      title: "Associate Video Editor",
+      image: t8,
+      className: "md:absolute md:top-16 md:left-[36%]",
+      rotation: "",
+    },
+    {
+      name: "Ankit",
+      title: "Associate Content Developer",
+      image: t4,
+      className: "md:absolute md:top-16 md:left-[50%]",
+      rotation: "",
+    },
+    {
+      name: "Gurnoor",
+      title: "Graphic Designer & Video Editor",
+      image: t5,
+      className: "md:absolute md:top-16 md:left-[66%]",
+      rotation: "",
+    },
+    {
+      name: "Aditi",
+      title: "Associate Content Developer",
       image: t10,
-      className: "md:absolute md:top-44 md:right-[40%]",
-      rotation: "md:-rotate-8",
+      className: "md:absolute md:top-16 md:left-[84%]",
+      rotation: "",
     },
     {
-      title: "Northern Lights",
+       name: "Vanish",
+      title: "Software Developer",
+      image: t3,
+    
+      className: "md:absolute md:top-80 md:left-[8%]",
+      rotation: "",
+    },
+    {
+      name: "Srishty",
+      title: "Associate Content Developer",
       image: t11,
-      className: "md:absolute md:top-44 md:right-[30%]",
-      rotation: "md:-rotate-8",
+      className: "md:absolute md:top-80 md:left-[24%]",
+      rotation: "",
+    },
+    {
+      name: "Gaurav",
+      title: "Digital Marketing & Ads Manager",
+      image: t2,
+      className: "md:absolute md:top-80 md:left-[40%]",
+      rotation: "",
+    },
+    {
+      name: "Robin Thakur",
+      title: "HR & Office Head",
+      image: t6,
+      className: "md:absolute md:top-80 md:left-[56%]",
+      rotation: "",
+    },
+    {
+        name: "Seetam",
+      title: "Software Developer",
+      image: t7,
+      className: "md:absolute md:top-80 md:left-[72%]",
+      rotation: "",
     },
   ];
 
   return (
-
     <div className='relative'>
       {/* Navbar Fixed at Top */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
         <Navbar />
       </div>
-      <div className="min-h-screen w-full pt-24 md:pt-28 bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800">
+      <div className="min-h-screen w-full pt-8 md:pt-12 bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800">
         <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4">
           {/* Background text */}
           <div className="absolute inset-0 flex items-center justify-center">
@@ -190,7 +200,7 @@ const ResponsiveDraggableCards = () => {
               <DraggableCardBody
                 key={index}
                 className={`
-                ${item.className} 
+                ${item.className}
                 ${item.rotation}
                 transition-all duration-300 hover:scale-105
                 md:hover:rotate-0
