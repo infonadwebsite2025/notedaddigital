@@ -129,7 +129,7 @@ const ResponsiveDraggableCards = () => {
       rotation: "",
     },
     {
-      name: "Gurnoor",
+      name: "Gurinder",
       title: "Graphic Designer & Video Editor",
       image: t5,
       className: "md:absolute md:top-16 md:left-[66%]",
@@ -152,7 +152,7 @@ const ResponsiveDraggableCards = () => {
     },
     {
       name: "Srishty",
-      title: "Associate Content Developer",
+      title: "",
       image: t11,
       className: "md:absolute md:top-80 md:left-[24%]",
       rotation: "",
@@ -172,7 +172,7 @@ const ResponsiveDraggableCards = () => {
       rotation: "",
     },
     {
-        name: "Seetam",
+      name: "Seetam",
       title: "Software Developer",
       image: t7,
       className: "md:absolute md:top-80 md:left-[72%]",
